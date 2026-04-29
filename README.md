@@ -24,17 +24,12 @@ NZBarr is free and open source software licensed under GPL-3.0-or-later.
 
 ```
 NZBarr-Desktop/
-├── electron/           # Electron main process
-│   ├── main.js        # App entry point
-│   └── preload.js     # Secure IPC bridge
+├── main-process/      # Electron main process and preload bridge
 ├── renderer/          # Frontend UI
-│   ├── index.html     # Main HTML
-│   ├── css/           # Styles
-│   └── js/            # Frontend JavaScript
-├── src/               # App logic (NNTP, NZB parsing, etc.)
-├── config/            # Configuration files
-├── docs/              # Documentation
-└── builds/            # Built applications files
+├── src/               # App logic, services, and repositories
+├── resources/         # Icons and app resources
+├── scripts/           # Build and maintenance scripts
+└── docs/              # Documentation
 ```
 
 ## Getting Started
