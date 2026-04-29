@@ -14,6 +14,28 @@ For Auto Refresh and reposting, you also need:
 2. `Refresh Category Setup`
 3. `NZB Auto Refresh`
 
+## Paths On Different Operating Systems
+
+NZBarr can run on macOS, Windows, and Linux, so path examples in the docs are only examples. Always use the path as it exists on the computer running NZBarr.
+
+Common examples:
+
+```text
+macOS download folder:   /Users/username/Downloads
+Windows download folder: C:\Users\username\Downloads
+Linux download folder:   /home/username/Downloads
+```
+
+Network or downloader folders also differ by platform:
+
+```text
+macOS mounted share:   /Volumes/SABnzbd/Downloads/complete
+Windows mapped drive:  Z:\SABnzbd\Downloads\complete
+Linux mounted share:   /mnt/sabnzbd/downloads/complete
+```
+
+For any folder setting, NZBarr needs a path that the local computer can read. If SABnzbd or NZBGet runs on another machine, mount or map that remote folder first, then enter the mounted path in NZBarr.
+
 ## NNTP Setup
 
 The NNTP Setup section is for Usenet server details. It has two parts: download NNTP and upload NNTP.
@@ -75,6 +97,14 @@ Fields:
 - `Use SSL for SABnzbd`: enable only when your SABnzbd web interface uses HTTPS.
 - `Completed Downloads Path`: local or mounted path where this computer can see SABnzbd's completed downloads.
 
+Completed downloads path examples:
+
+```text
+macOS:   /Volumes/SABnzbd/Downloads/complete
+Windows: Z:\SABnzbd\Downloads\complete
+Linux:   /mnt/sabnzbd/downloads/complete
+```
+
 Use `Test SABnzbd Connection` after entering the settings. The diagnostics card shows which endpoint and API key NZBarr is trying.
 
 ### NZBGet
@@ -99,6 +129,14 @@ This section is only needed for the Auto Refresh workflow. NZBarr sends refresh 
 - `Completed Refresh Folder Path`: the folder where SABnzbd places completed refresh downloads. This must be visible to the machine running NZBarr.
 - `After Successful Refresh`: choose whether NZBarr deletes the completed refresh download or moves it somewhere else after reposting.
 - `Move Destination`: folder used when `Move downloaded refresh file` is selected.
+
+Completed refresh folder examples:
+
+```text
+macOS:   /Volumes/SABnzbd/Downloads/complete/nzbarr-refresh
+Windows: Z:\SABnzbd\Downloads\complete\nzbarr-refresh
+Linux:   /mnt/sabnzbd/downloads/complete/nzbarr-refresh
+```
 
 One-time SABnzbd setup:
 
@@ -134,6 +172,14 @@ This section controls local download behavior inside NZBarr.
 
 - `Download Location`: folder where NZBarr should place downloaded files when it downloads directly.
 - `Max Concurrent Downloads`: maximum number of simultaneous downloads.
+
+Download location examples:
+
+```text
+macOS:   /Users/username/Downloads
+Windows: C:\Users\username\Downloads
+Linux:   /home/username/Downloads
+```
 
 This is separate from SABnzbd/NZBGet settings.
 
@@ -178,7 +224,23 @@ Fields:
 
 - `Movies Preparation Folder`: folder containing movie NZBs.
 - `TV Preparation Folder`: folder containing TV NZBs.
-- `NZB Storage Directory`: optional override for where NZBarr stores imported NZB files. Leave empty to use the default Application Support location.
+- `NZB Storage Directory`: optional override for where NZBarr stores imported NZB files. Leave empty to use the default app data location.
+
+Preparation folder examples:
+
+```text
+macOS movies:   /Users/username/Downloads/NZB Movies
+Windows movies: C:\Users\username\Downloads\NZB Movies
+Linux movies:   /home/username/Downloads/NZB Movies
+```
+
+Default app data locations are usually:
+
+```text
+macOS:   ~/Library/Application Support/NZBarr-GIT
+Windows: %APPDATA%\NZBarr-GIT
+Linux:   ~/.config/NZBarr-GIT
+```
 
 Buttons:
 
@@ -219,6 +281,16 @@ Fields:
 - `Refresh Queue`: shows queued and active refresh jobs.
 
 Use `Keep both` while testing. Use `Replace existing NZB` only after you trust your refresh setup.
+
+External tool paths depend on the operating system and how the tool was installed. Examples:
+
+```text
+macOS ngPost app: /Applications/ngPost.app/Contents/MacOS/ngPost
+Windows ngPost:   C:\Program Files\ngPost\ngPost.exe
+Linux ngPost:     /usr/bin/ngpost
+```
+
+The same idea applies to `MediaInfo`, `unrar`, and `7z`: install them for your operating system and make sure NZBarr can find them or that the configured path points to the executable.
 
 ## UI Settings
 

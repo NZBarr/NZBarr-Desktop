@@ -129,13 +129,17 @@ You can also run:
 npm start
 ```
 
-This checkout starts as `NZBarr-GIT` and stores its macOS app data in:
+This checkout starts as `NZBarr-GIT` and uses a separate app data folder from the normal `NZBarr` app.
+
+Common app data locations:
 
 ```text
-~/Library/Application Support/NZBarr-GIT
+macOS:   ~/Library/Application Support/NZBarr-GIT
+Windows: %APPDATA%\NZBarr-GIT
+Linux:   ~/.config/NZBarr-GIT
 ```
 
-That keeps it separate from an existing `NZBarr` install.
+The exact location can vary depending on how Electron is packaged on a platform, but the important point is that `NZBarr-GIT` is kept separate from an existing `NZBarr` install.
 
 ## Building
 
@@ -172,6 +176,8 @@ Optional external playback:
 - MPV
 
 If one of these tools is missing, only the related feature should fail. The rest of NZBarr can still be used.
+
+Paths for external tools and folders are platform-specific. For example, a download folder might look like `/Users/name/Downloads` on macOS, `C:\Users\name\Downloads` on Windows, or `/home/name/Downloads` on Linux. Use paths as they exist on the computer running NZBarr.
 
 ## Project Structure
 
