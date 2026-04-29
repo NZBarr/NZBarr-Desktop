@@ -98,7 +98,7 @@ Recommended parts:
 
 - Title first.
 - Year in parentheses, for example `(2024)`.
-- TV season or episode in brackets, for example `[S01]` or `[S01E02]` or [S00E01] for specials or [S99] for complete series.
+- TV season or episode in brackets, for example `[S01]` or `[S01E02]` or `[S00E01]` for specials or `[S99]` for complete series.
 - Technical metadata in one bracket, for example `[1080P-WEB-DL-DD5.1-H.264-GROUP-mkv]`.
 - IMDb ID, for example `[imdb-tt1234567]`.
 - TMDB ID, for example `[tmdb-12345]`.
