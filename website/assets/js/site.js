@@ -57,22 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   setupAjaxForm({
-    formSelector: '#license-request-form',
-    statusSelector: '#license-request-status',
-    successSelector: '#license-request-success',
-    buildPayload: (formData) => ({
-      plan: String(formData.get('plan') || '').trim(),
-      platform: String(formData.get('platform') || '').trim(),
-      paypalEmail: String(formData.get('paypalEmail') || '').trim(),
-      licenseEmail: String(formData.get('licenseEmail') || '').trim(),
-      customerName: String(formData.get('customerName') || '').trim(),
-      transactionId: String(formData.get('transactionId') || '').trim(),
-      notes: String(formData.get('notes') || '').trim(),
-      company: String(formData.get('company') || '').trim()
-    })
-  });
-
-  setupAjaxForm({
     formSelector: '#contact-request-form',
     statusSelector: '#contact-request-status',
     successSelector: '#contact-request-success',

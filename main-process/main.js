@@ -110,8 +110,6 @@ const dataAccess = require('../src/index');
 const { dialog } = require('electron');
 const autoRefreshScheduler = require('../src/autoRefreshScheduler');
 const fanartService = require('../src/fanartService');
-const LicenseService = require('../src/licenseService');
-const licenseService = new LicenseService(dataAccess.settings);
 
 // Error handling
 process.on('uncaughtException', (error) => {
@@ -141,44 +139,6 @@ function sendOwnedRefreshProgress(releaseId, payload) {
     timestamp: new Date().toISOString(),
     ...payload
   });
-}
-
-function getPremiumFeatureError(feature) {
-  const labels = {
-    send_to_downloader: 'Sending releases to a downloader requires a Premium license.',
-    bulk_actions: 'Batch selection and batch downloading require a Premium license.',
-    auto_refresh: 'Auto Refresh requires a Premium license.',
-    owned_refresh: 'Refreshing owned releases requires a Premium license.',
-    edit_media_info: 'Editing movie and TV info requires a Premium license.',
-    custom_artwork_upload: 'Uploading custom artwork requires a Premium license.',
-    fanart_artwork: 'Fanart artwork selection requires a Premium license.',
-    smart_preparation: 'Smart Preparation requires a Premium license.'
-  };
-  return labels[feature] || 'This feature requires a Premium license.';
-}
-
-async function enforceLicensedFeature(feature) {
-  const status = await licenseService.getStatus();
-  if (licenseService.canUseFeature(status, feature)) {
-    return null;
-  }
-
-  return {
-    success: false,
-    error: getPremiumFeatureError(feature)
-  };
-}
-
-async function enforcePremiumAccess(feature = 'premium') {
-  const status = await licenseService.getStatus();
-  if (status.status === 'active' || status.status === 'grace') {
-    return null;
-  }
-
-  return {
-    success: false,
-    error: getPremiumFeatureError(feature)
-  };
 }
 
 function sanitizeAssetFilename(filename) {
@@ -476,12 +436,6 @@ app.whenReady().then(async () => {
 
   // Start the auto-refresh scheduler after a short delay to let the app settle
   setTimeout(async () => {
-    const licenseError = await enforceLicensedFeature('auto_refresh');
-    if (licenseError) {
-      console.log('[AutoRefresh] Scheduler not started: premium license required');
-      return;
-    }
-
     console.log('[AutoRefresh] Starting scheduler...');
     autoRefreshScheduler.start();
   }, 5000);
@@ -646,11 +600,6 @@ ipcMain.handle('media:uploadImage', async (event, imageData) => {
 
 ipcMain.handle('media:downloadImageToPath', async (event, params) => {
   try {
-    const licenseError = await enforceLicensedFeature('fanart_artwork');
-    if (licenseError) {
-      return licenseError;
-    }
-
     const { url, destPath } = params || {};
     if (!url || !destPath) {
       return { success: false, error: 'Missing image URL or destination path' };
@@ -1114,11 +1063,6 @@ ipcMain.handle('releases:downloadNZB', async (event, id) => {
 // Batch download NZB files to a single folder
 ipcMain.handle('releases:downloadNZBBatch', async (event, ids) => {
   try {
-    const licenseError = await enforceLicensedFeature('bulk_actions');
-    if (licenseError) {
-      return licenseError;
-    }
-
     const { dialog } = require('electron');
     const fs = require('fs');
     const pathModule = require('path');
@@ -1154,11 +1098,6 @@ ipcMain.handle('releases:downloadNZBBatch', async (event, ids) => {
 
 ipcMain.handle('releases:sendToDownloader', async (event, releaseId, requestedDownloader) => {
   try {
-    const licenseError = await enforceLicensedFeature('send_to_downloader');
-    if (licenseError) {
-      return licenseError;
-    }
-
     const release = await dataAccess.releases.getById(releaseId);
     if (!release) {
       return { success: false, error: 'Release not found' };
@@ -1209,12 +1148,7 @@ ipcMain.handle('autoRefresh:getStatus', async () => {
 });
 
 ipcMain.handle('autoRefresh:start', async () => {
-  try {
-    const licenseError = await enforceLicensedFeature('auto_refresh');
-    if (licenseError) {
-      return licenseError;
-    }
-    autoRefreshScheduler.start();
+  try {    autoRefreshScheduler.start();
     return { success: true };
   } catch (error) {
     return { success: false, error: error.message };
@@ -1222,12 +1156,7 @@ ipcMain.handle('autoRefresh:start', async () => {
 });
 
 ipcMain.handle('autoRefresh:stop', async () => {
-  try {
-    const licenseError = await enforceLicensedFeature('auto_refresh');
-    if (licenseError) {
-      return licenseError;
-    }
-    autoRefreshScheduler.stop();
+  try {    autoRefreshScheduler.stop();
     return { success: true };
   } catch (error) {
     return { success: false, error: error.message };
@@ -1235,12 +1164,7 @@ ipcMain.handle('autoRefresh:stop', async () => {
 });
 
 ipcMain.handle('autoRefresh:triggerManual', async (event, releaseId) => {
-  try {
-    const licenseError = await enforceLicensedFeature('owned_refresh');
-    if (licenseError) {
-      return licenseError;
-    }
-    const settings = await dataAccess.settings.getAll();
+  try {    const settings = await dataAccess.settings.getAll();
     const result = await autoRefreshScheduler.triggerManualRefresh(releaseId, settings);
     return result;
   } catch (error) {
@@ -1250,12 +1174,7 @@ ipcMain.handle('autoRefresh:triggerManual', async (event, releaseId) => {
 });
 
 ipcMain.handle('autoRefresh:queueManual', async (event, releaseId) => {
-  try {
-    const licenseError = await enforceLicensedFeature('owned_refresh');
-    if (licenseError) {
-      return licenseError;
-    }
-    const settings = await dataAccess.settings.getAll();
+  try {    const settings = await dataAccess.settings.getAll();
     return await autoRefreshScheduler.queueManualRefresh(releaseId, settings);
   } catch (error) {
     console.error('Failed to queue manual refresh:', error);
@@ -1265,10 +1184,6 @@ ipcMain.handle('autoRefresh:queueManual', async (event, releaseId) => {
 
 ipcMain.handle('autoRefresh:queueManualBatch', async (event, releaseIds) => {
   try {
-    const licenseError = await enforceLicensedFeature('owned_refresh');
-    if (licenseError) {
-      return licenseError;
-    }
     const settings = await dataAccess.settings.getAll();
     return await autoRefreshScheduler.queueManualRefreshBatch(releaseIds, settings);
   } catch (error) {
@@ -1279,10 +1194,6 @@ ipcMain.handle('autoRefresh:queueManualBatch', async (event, releaseIds) => {
 
 ipcMain.handle('autoRefresh:runQueued', async () => {
   try {
-    const licenseError = await enforceLicensedFeature('owned_refresh');
-    if (licenseError) {
-      return licenseError;
-    }
     const settings = await dataAccess.settings.getAll();
     return autoRefreshScheduler.startQueuedRefreshes(settings);
   } catch (error) {
@@ -1351,10 +1262,6 @@ ipcMain.handle('settings:saveAll', async (event, settings) => {
 
 ipcMain.handle('pipeline:run', async (event, options) => {
   try {
-    const licenseError = await enforcePremiumAccess('smart_preparation');
-    if (licenseError) {
-      return licenseError;
-    }
     return await dataAccess.importPreparation.runConfigured(options || {});
   } catch (error) {
     return {
@@ -1364,32 +1271,8 @@ ipcMain.handle('pipeline:run', async (event, options) => {
   }
 });
 
-ipcMain.handle('license:getStatus', async () => {
-  return await licenseService.getStatus();
-});
-
 ipcMain.handle('support:getDiagnostics', async () => {
   try {
-    const status = await licenseService.getStatus();
-    const settings = await dataAccess.settings.getMany([
-      'license_signature_verified',
-      'license_response_key_id',
-      'license_response_alg',
-      'license_signed_payload'
-    ]);
-
-    let serverHost = '';
-    try {
-      serverHost = status.serverUrl ? new URL(status.serverUrl).host : '';
-    } catch (error) {
-      serverHost = status.serverUrl || '';
-    }
-
-    const key = status.key || '';
-    const keyPreview = key.length > 8
-      ? `${key.slice(0, 4)}...${key.slice(-4)}`
-      : (key ? 'set' : 'not-set');
-
     return {
       success: true,
       diagnostics: {
@@ -1400,26 +1283,6 @@ ipcMain.handle('support:getDiagnostics', async () => {
           platform: process.platform,
           arch: process.arch,
           osRelease: os.release()
-        },
-        license: {
-          status: status.status || 'free',
-          storedStatus: status.storedStatus || '',
-          plan: status.plan || 'free',
-          featureCount: Array.isArray(status.features) ? status.features.length : 0,
-          hasKey: !!status.key,
-          keyPreview,
-          machineIdPreview: status.machineId ? `${status.machineId.slice(0, 8)}...` : '',
-          serverHost,
-          lastValidatedAt: status.lastValidatedAt || '',
-          expiresAt: status.expiresAt || '',
-          graceUntil: status.graceUntil || '',
-          message: status.message || '',
-          signature: {
-            verified: settings.license_signature_verified === '1',
-            keyId: settings.license_response_key_id || '',
-            algorithm: settings.license_response_alg || '',
-            hasSignedPayload: !!settings.license_signed_payload
-          }
         }
       }
     };
@@ -1428,47 +1291,6 @@ ipcMain.handle('support:getDiagnostics', async () => {
       success: false,
       error: error.message
     };
-  }
-});
-
-ipcMain.handle('license:activate', async (event, params) => {
-  try {
-    return {
-      success: true,
-      status: await licenseService.activateLicense({
-        key: params?.key,
-        serverUrl: params?.serverUrl,
-        appVersion: app.getVersion(),
-        platform: process.platform
-      })
-    };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-});
-
-ipcMain.handle('license:refresh', async () => {
-  try {
-    return {
-      success: true,
-      status: await licenseService.refreshLicense({
-        appVersion: app.getVersion(),
-        platform: process.platform
-      })
-    };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-});
-
-ipcMain.handle('license:clear', async () => {
-  try {
-    return {
-      success: true,
-      status: await licenseService.clearLicense()
-    };
-  } catch (error) {
-    return { success: false, error: error.message };
   }
 });
 
@@ -1568,11 +1390,6 @@ ipcMain.handle('releases:reanalyze', async (event, releaseId) => {
 
 ipcMain.handle('releases:refreshOwned', async (event, releaseId) => {
   try {
-    const licenseError = await enforceLicensedFeature('owned_refresh');
-    if (licenseError) {
-      return licenseError;
-    }
-
     const release = await dataAccess.releases.getById(releaseId);
     if (!release) {
       return { success: false, error: 'Release not found' };
@@ -1762,12 +1579,7 @@ ipcMain.handle('tvInfo:getByIMDB', async (event, imdbId) => {
 });
 
 ipcMain.handle('movieInfo:update', async (event, id, updates) => {
-  try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-    await dataAccess.movieInfo.update(id, updates);
+  try {    await dataAccess.movieInfo.update(id, updates);
     return { success: true };
   } catch (e) {
     return { success: false, error: e.message };
@@ -1775,12 +1587,7 @@ ipcMain.handle('movieInfo:update', async (event, id, updates) => {
 });
 
 ipcMain.handle('movieInfo:upsert', async (event, info) => {
-  try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-    await dataAccess.movieInfo.createOrUpdate(info);
+  try {    await dataAccess.movieInfo.createOrUpdate(info);
     let saved = null;
     if (info.tmdb_id) saved = await dataAccess.movieInfo.getByTMDB(info.tmdb_id);
     if (!saved && info.imdb_id) saved = await dataAccess.movieInfo.getByIMDB(info.imdb_id);
@@ -1792,12 +1599,7 @@ ipcMain.handle('movieInfo:upsert', async (event, info) => {
 });
 
 ipcMain.handle('tvInfo:update', async (event, id, updates) => {
-  try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-    const tvInfo = require('../src/repositories/tvInfoRepository');
+  try {    const tvInfo = require('../src/repositories/tvInfoRepository');
     await tvInfo.update(id, updates);
     return { success: true };
   } catch (e) {
@@ -1806,12 +1608,7 @@ ipcMain.handle('tvInfo:update', async (event, id, updates) => {
 });
 
 ipcMain.handle('tvInfo:upsert', async (event, info) => {
-  try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-    const tvInfo = require('../src/repositories/tvInfoRepository');
+  try {    const tvInfo = require('../src/repositories/tvInfoRepository');
     await tvInfo.createOrUpdate(info);
     let saved = null;
     if (info.tmdb_id) saved = await tvInfo.getByTMDB(info.tmdb_id);
@@ -1825,12 +1622,7 @@ ipcMain.handle('tvInfo:upsert', async (event, info) => {
 
 // Delete movie/TV info + all releases + cached images
 ipcMain.handle('movieInfo:deleteFull', async (event, tmdbId, imdbId, mediaType) => {
-  try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-    const fs = require('fs');
+  try {    const fs = require('fs');
     const pathModule = require('path');
     const tmdbService = require('../src/tmdbService');
     const settings = await dataAccess.settings.getAll();
@@ -1894,12 +1686,7 @@ ipcMain.handle('movieInfo:deleteFull', async (event, tmdbId, imdbId, mediaType) 
 });
 
 ipcMain.handle('tvInfo:deleteFull', async (event, tmdbId, imdbId, mediaType) => {
-  try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-    const fs = require('fs');
+  try {    const fs = require('fs');
     const pathModule = require('path');
     const tvInfo = require('../src/repositories/tvInfoRepository');
     const cacheDir = appPaths.getImageCacheDir();
@@ -2153,11 +1940,6 @@ ipcMain.handle('tmdb:searchTV', async (event, title) => {
 
 ipcMain.handle('fanart:getCoverOptions', async (event, params) => {
   try {
-    const licenseError = await enforceLicensedFeature('fanart_artwork');
-    if (licenseError) {
-      return licenseError;
-    }
-
     const settings = await dataAccess.settings.getAll();
     fanartService.initialize(settings.api_fanart_key || null);
 
@@ -2245,11 +2027,6 @@ async function saveActorsToCache(cast, tmdbService) {
 // Save movie info from TMDB details to database
 ipcMain.handle('movieInfo:saveFromTMDB', async (event, details) => {
   try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-
     const movieInfoRepo = dataAccess.movieInfo;
     const tmdbService = require('../src/tmdbService');
     const settings = await dataAccess.settings.getAll();
@@ -2331,11 +2108,6 @@ ipcMain.handle('movieInfo:saveFromTMDB', async (event, details) => {
 // Save TV info from TMDB details to database
 ipcMain.handle('tvInfo:saveFromTMDB', async (event, details) => {
   try {
-    const licenseError = await enforceLicensedFeature('edit_media_info');
-    if (licenseError) {
-      return licenseError;
-    }
-
     const tvInfoRepo = dataAccess.tvInfo;
     const tmdbService = require('../src/tmdbService');
     const settings = await dataAccess.settings.getAll();

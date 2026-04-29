@@ -11,6 +11,8 @@ NZBarr Desktop is a standalone desktop application that:
 - Plays content locally in your preferred player
 - Deletes downloaded content after watching (free up space)
 
+NZBarr is free and open source software licensed under GPL-3.0-or-later.
+
 ## Tech Stack
 
 - **Electron** - Desktop app framework
@@ -148,7 +150,6 @@ npm run build:linux  # Linux only
 - [ ] Download manager
 - [ ] Built-in video player
 - [ ] External player integration
-- [ ] License verification with NZBarr web API
 - [ ] Multilingual support (reuse translations)
 - [ ] Beautiful library UI with posters
 
@@ -163,4 +164,4 @@ The app works like this:
 
 ## License
 
-[License information]
+NZBarr is free and open source software licensed under GPL-3.0-or-later. See [LICENSE](LICENSE).

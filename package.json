@@ -16,7 +16,7 @@
     "name": "NZBarr",
     "email": "hello@nzbarr.com"
   },
-  "license": "UNLICENSED",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "electron": "^33.4.11",
     "electron-builder": "^24.9.1",

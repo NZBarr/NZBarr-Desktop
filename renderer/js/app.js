@@ -41,7 +41,6 @@ class NZBarrApp {
     this.selectedUploadResult = null;
     this.currentRefreshLog = [];
     this.mediaAssetVersionMap = new Map();
-    this.licenseStatus = null;
     this.batchEditSelection = null;
     this._editLinkedMediaSearchTimer = null;
     this._editLinkedMediaSearchRequestId = 0;
@@ -3241,7 +3240,7 @@ if (displayItem.status) {
   bindTVTableActions() {
     const tableEl = document.getElementById('releases-table');
     if (!tableEl) return;
-    const canUseBulkActions = this.canUseLicensedFeature('bulk_actions');
+    const canUseBulkActions = this.canUseFeature('bulk_actions');
     this.bindDetailReleaseTableSorting(tableEl);
     this.bindReleaseSelectCellToggles(tableEl);
 
@@ -3254,39 +3253,39 @@ if (displayItem.status) {
       const batchEditBtn = document.getElementById('tv-batch-edit-selected');
       const deleteBtn = document.getElementById('tv-delete-selected');
       const selectAll = document.getElementById('tv-select-all');
-      const canSend = this.canUseLicensedFeature('send_to_downloader');
-      const canRefresh = this.canUseLicensedFeature('owned_refresh');
+      const canSend = this.canUseFeature('send_to_downloader');
+      const canRefresh = this.canUseFeature('owned_refresh');
 
       if (countEl) countEl.textContent = `${checked.length} selected`;
       if (downloadBtn) {
         downloadBtn.disabled = checked.length === 0 || !canUseBulkActions;
-        downloadBtn.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+        downloadBtn.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       }
       if (deleteBtn) {
         deleteBtn.disabled = checked.length === 0 || !canUseBulkActions;
-        deleteBtn.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+        deleteBtn.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       }
       if (sendBtn) {
         if (!canUseBulkActions) {
           sendBtn.disabled = true;
-          sendBtn.title = this.getLicensedFeatureMessage('bulk_actions');
+          sendBtn.title = this.getFeatureUnavailableMessage('bulk_actions');
         } else {
           sendBtn.disabled = checked.length === 0 || !canSend;
-          sendBtn.title = canSend ? '' : this.getLicensedFeatureMessage('send_to_downloader');
+          sendBtn.title = canSend ? '' : this.getFeatureUnavailableMessage('send_to_downloader');
         }
       }
       if (queueRefreshBtn) {
         if (!canUseBulkActions) {
           queueRefreshBtn.disabled = true;
-          queueRefreshBtn.title = this.getLicensedFeatureMessage('bulk_actions');
+          queueRefreshBtn.title = this.getFeatureUnavailableMessage('bulk_actions');
         } else {
           queueRefreshBtn.disabled = checked.length === 0 || !canRefresh;
-          queueRefreshBtn.title = canRefresh ? '' : this.getLicensedFeatureMessage('owned_refresh');
+          queueRefreshBtn.title = canRefresh ? '' : this.getFeatureUnavailableMessage('owned_refresh');
         }
       }
       if (batchEditBtn) {
         batchEditBtn.disabled = checked.length === 0 || !canUseBulkActions;
-        batchEditBtn.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+        batchEditBtn.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       }
 
       const allChecks = tableEl.querySelectorAll('.tv-release-check');
@@ -3298,7 +3297,7 @@ if (displayItem.status) {
     const selectAll = document.getElementById('tv-select-all');
     if (selectAll) {
       selectAll.disabled = !canUseBulkActions;
-      selectAll.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+      selectAll.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       selectAll.addEventListener('change', () => {
         if (!canUseBulkActions) {
           selectAll.checked = false;
@@ -3311,14 +3310,14 @@ if (displayItem.status) {
 
     tableEl.querySelectorAll('.tv-release-check').forEach(c => {
       c.disabled = !canUseBulkActions;
-      c.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+      c.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       c.addEventListener('change', updateBatchBar);
     });
 
     const downloadSelectedBtn = document.getElementById('tv-download-selected');
     if (downloadSelectedBtn) {
       downloadSelectedBtn.addEventListener('click', async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const selected = tableEl.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -3341,7 +3340,7 @@ if (displayItem.status) {
     const sendSelectedBtn = document.getElementById('tv-send-selected');
     if (sendSelectedBtn) {
       sendSelectedBtn.addEventListener('click', async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const selected = tableEl.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -3354,8 +3353,8 @@ if (displayItem.status) {
     const queueRefreshSelectedBtn = document.getElementById('tv-queue-refresh-selected');
     if (queueRefreshSelectedBtn) {
       queueRefreshSelectedBtn.addEventListener('click', async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
-        if (!this.requireLicensedFeature('owned_refresh')) return;
+        if (!this.requireFeature('bulk_actions')) return;
+        if (!this.requireFeature('owned_refresh')) return;
         const selected = tableEl.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -3368,7 +3367,7 @@ if (displayItem.status) {
     const batchEditSelectedBtn = document.getElementById('tv-batch-edit-selected');
     if (batchEditSelectedBtn) {
       batchEditSelectedBtn.addEventListener('click', async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const releases = await this.getSelectedReleasesFromTable(tableEl);
         if (releases.length === 0) return;
         this.openBatchEditSelected(releases);
@@ -3378,7 +3377,7 @@ if (displayItem.status) {
     const deleteSelectedBtn = document.getElementById('tv-delete-selected');
     if (deleteSelectedBtn) {
       deleteSelectedBtn.addEventListener('click', async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const selected = tableEl.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -3414,8 +3413,8 @@ if (displayItem.status) {
     });
 
     tableEl.querySelectorAll('.action-icon-btn[data-action="send"]').forEach(btn => {
-      btn.disabled = !this.canUseLicensedFeature('send_to_downloader');
-      btn.title = this.canUseLicensedFeature('send_to_downloader') ? '' : this.getLicensedFeatureMessage('send_to_downloader');
+      btn.disabled = !this.canUseFeature('send_to_downloader');
+      btn.title = this.canUseFeature('send_to_downloader') ? '' : this.getFeatureUnavailableMessage('send_to_downloader');
       btn.addEventListener('click', async (e) => {
         e.stopPropagation();
         const id = parseInt(btn.dataset.id);
@@ -3799,7 +3798,7 @@ if (displayItem.status) {
   bindBrowseTableActions() {
     const tbody = document.getElementById('browse-releases-tbody');
     if (!tbody) return;
-    const canUseBulkActions = this.canUseLicensedFeature('bulk_actions');
+    const canUseBulkActions = this.canUseFeature('bulk_actions');
     this.bindReleaseSelectCellToggles(tbody);
     this.bindBrowseHeaderSorting();
 
@@ -3820,38 +3819,38 @@ if (displayItem.status) {
     const updateBrowseBatchBar = () => {
       const checked = tbody.querySelectorAll('.tv-release-check:checked');
       const count = checked.length;
-      const canSend = this.canUseLicensedFeature('send_to_downloader');
-      const canRefresh = this.canUseLicensedFeature('owned_refresh');
+      const canSend = this.canUseFeature('send_to_downloader');
+      const canRefresh = this.canUseFeature('owned_refresh');
       if (countEl) countEl.textContent = `${count} selected`;
       if (downloadBtn) {
         downloadBtn.disabled = count === 0 || !canUseBulkActions;
-        downloadBtn.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+        downloadBtn.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       }
       if (deleteBtn) {
         deleteBtn.disabled = count === 0 || !canUseBulkActions;
-        deleteBtn.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+        deleteBtn.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       }
       if (sendBtn) {
         if (!canUseBulkActions) {
           sendBtn.disabled = true;
-          sendBtn.title = this.getLicensedFeatureMessage('bulk_actions');
+          sendBtn.title = this.getFeatureUnavailableMessage('bulk_actions');
         } else {
           sendBtn.disabled = count === 0 || !canSend;
-          sendBtn.title = canSend ? '' : this.getLicensedFeatureMessage('send_to_downloader');
+          sendBtn.title = canSend ? '' : this.getFeatureUnavailableMessage('send_to_downloader');
         }
       }
       if (queueRefreshBtn) {
         if (!canUseBulkActions) {
           queueRefreshBtn.disabled = true;
-          queueRefreshBtn.title = this.getLicensedFeatureMessage('bulk_actions');
+          queueRefreshBtn.title = this.getFeatureUnavailableMessage('bulk_actions');
         } else {
           queueRefreshBtn.disabled = count === 0 || !canRefresh;
-          queueRefreshBtn.title = canRefresh ? '' : this.getLicensedFeatureMessage('owned_refresh');
+          queueRefreshBtn.title = canRefresh ? '' : this.getFeatureUnavailableMessage('owned_refresh');
         }
       }
       if (batchEditBtn) {
         batchEditBtn.disabled = count === 0 || !canUseBulkActions;
-        batchEditBtn.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+        batchEditBtn.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       }
 
       const allChecks = tbody.querySelectorAll('.tv-release-check');
@@ -3862,7 +3861,7 @@ if (displayItem.status) {
 
     if (selectAll) {
       selectAll.disabled = !canUseBulkActions;
-      selectAll.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+      selectAll.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       selectAll.onchange = () => {
         if (!canUseBulkActions) {
           selectAll.checked = false;
@@ -3875,7 +3874,7 @@ if (displayItem.status) {
 
     if (masterSelectAll) {
       masterSelectAll.disabled = !canUseBulkActions;
-      masterSelectAll.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+      masterSelectAll.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       masterSelectAll.onchange = () => {
         if (!canUseBulkActions) {
           masterSelectAll.checked = false;
@@ -3888,13 +3887,13 @@ if (displayItem.status) {
 
     tbody.querySelectorAll('.tv-release-check').forEach(c => {
       c.disabled = !canUseBulkActions;
-      c.title = canUseBulkActions ? '' : this.getLicensedFeatureMessage('bulk_actions');
+      c.title = canUseBulkActions ? '' : this.getFeatureUnavailableMessage('bulk_actions');
       c.addEventListener('change', updateBrowseBatchBar);
     });
 
     if (downloadBtn) {
       downloadBtn.onclick = async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const selected = tbody.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -3916,7 +3915,7 @@ if (displayItem.status) {
 
     if (sendBtn) {
       sendBtn.onclick = async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const selected = tbody.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -3928,8 +3927,8 @@ if (displayItem.status) {
 
     if (queueRefreshBtn) {
       queueRefreshBtn.onclick = async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
-        if (!this.requireLicensedFeature('owned_refresh')) return;
+        if (!this.requireFeature('bulk_actions')) return;
+        if (!this.requireFeature('owned_refresh')) return;
         const selected = tbody.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -3941,7 +3940,7 @@ if (displayItem.status) {
 
     if (batchEditBtn) {
       batchEditBtn.onclick = async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const releases = await this.getSelectedReleasesFromTable(tbody);
         if (releases.length === 0) return;
         this.openBatchEditSelected(releases);
@@ -3950,7 +3949,7 @@ if (displayItem.status) {
 
     if (deleteBtn) {
       deleteBtn.onclick = async () => {
-        if (!this.requireLicensedFeature('bulk_actions')) return;
+        if (!this.requireFeature('bulk_actions')) return;
         const selected = tbody.querySelectorAll('.tv-release-check:checked');
         if (selected.length === 0) return;
 
@@ -4001,8 +4000,8 @@ if (displayItem.status) {
     });
 
     tbody.querySelectorAll('.action-icon-btn[data-action="send"]').forEach(btn => {
-      btn.disabled = !this.canUseLicensedFeature('send_to_downloader');
-      btn.title = this.canUseLicensedFeature('send_to_downloader') ? '' : this.getLicensedFeatureMessage('send_to_downloader');
+      btn.disabled = !this.canUseFeature('send_to_downloader');
+      btn.title = this.canUseFeature('send_to_downloader') ? '' : this.getFeatureUnavailableMessage('send_to_downloader');
       btn.addEventListener('click', async (e) => {
         e.stopPropagation();
         const id = parseInt(btn.dataset.id);
@@ -5222,34 +5221,9 @@ if (displayItem.status) {
       saveDownloaderSettingsBtn.addEventListener('click', () => this.saveDownloaderSettings());
     }
 
-    const activateLicenseBtn = document.getElementById('license-activate-btn');
-    if (activateLicenseBtn) {
-      activateLicenseBtn.addEventListener('click', () => this.activateLicense());
-    }
-
-    const refreshLicenseBtn = document.getElementById('license-refresh-btn');
-    if (refreshLicenseBtn) {
-      refreshLicenseBtn.addEventListener('click', () => this.refreshLicense());
-    }
-
     const refreshQueueReloadBtn = document.getElementById('refresh-queue-reload-btn');
     if (refreshQueueReloadBtn) {
       refreshQueueReloadBtn.addEventListener('click', () => this.loadRefreshQueuePanel());
-    }
-
-    const clearLicenseBtn = document.getElementById('license-clear-btn');
-    if (clearLicenseBtn) {
-      clearLicenseBtn.addEventListener('click', () => this.clearLicense());
-    }
-
-    const openLicenseServerBtn = document.getElementById('license-open-server-btn');
-    if (openLicenseServerBtn) {
-      openLicenseServerBtn.addEventListener('click', () => this.openLicenseServer());
-    }
-
-    const copySupportBtn = document.getElementById('license-copy-support-btn');
-    if (copySupportBtn) {
-      copySupportBtn.addEventListener('click', () => this.copyLicenseSupportCode());
     }
 
     const fanartApiKeyInput = document.getElementById('fanart-api-key');
@@ -5436,8 +5410,8 @@ if (displayItem.status) {
   updateReleaseDetailDownloaderButtons(settings = this.collectDownloaderSettingsFromForm()) {
     const sendSabBtn = document.getElementById('release-send-sab-btn');
     const sendNzbGetBtn = document.getElementById('release-send-nzbget-btn');
-    const canSend = this.canUseLicensedFeature('send_to_downloader');
-    const lockedMessage = this.getLicensedFeatureMessage('send_to_downloader');
+    const canSend = this.canUseFeature('send_to_downloader');
+    const lockedMessage = this.getFeatureUnavailableMessage('send_to_downloader');
 
     if (sendSabBtn) {
       const configured = this.isSabnzbdConfigured(settings);
@@ -5603,7 +5577,7 @@ if (displayItem.status) {
 
   updateFanartFeatureAvailability(settings = null) {
     const hasFanartKey = this.hasFanartApiKey(settings);
-    const hasFanartAccess = this.canUseLicensedFeature('fanart_artwork');
+    const hasFanartAccess = this.canUseFeature('fanart_artwork');
     const fanartButtons = [
       { id: 'edit-mi-fanart-cover-btn', label: 'cover' },
       { id: 'edit-mi-fanart-backdrop-btn', label: 'backdrop' },
@@ -5615,17 +5589,17 @@ if (displayItem.status) {
       if (!button) return;
       button.disabled = false;
       button.title = !hasFanartAccess
-        ? this.getLicensedFeatureMessage('fanart_artwork')
+        ? this.getFeatureUnavailableMessage('fanart_artwork')
         : hasFanartKey
           ? `Browse ${label} artwork from Fanart.tv`
           : 'Add a Fanart API key in Settings to enable Fanart.tv artwork';
-      button.classList.toggle('premium-locked', !hasFanartAccess || !hasFanartKey);
+      button.classList.toggle('feature-unavailable', !hasFanartAccess || !hasFanartKey);
     });
 
     const hint = document.getElementById('edit-mi-fanart-hint');
     if (hint) {
       hint.textContent = !hasFanartAccess
-        ? 'Fanart.tv artwork is available with a Premium license.'
+        ? 'Fanart.tv artwork is available.'
         : hasFanartKey
           ? 'Fanart.tv artwork is available for cover, backdrop, and logo.'
           : 'Fanart.tv artwork requires a Fanart API key in Settings.';
@@ -5679,7 +5653,6 @@ if (displayItem.status) {
       api_fanart_key: document.getElementById('fanart-api-key').value,
       easynews_username: document.getElementById('easynews-username').value.trim(),
       easynews_password: document.getElementById('easynews-password').value,
-      license_server_url: document.getElementById('license-server-url')?.value?.trim() || '',
       ...this.collectPreparationFolderSettings(),
       download_path: document.getElementById('download-path').value,
       nzbStoragePath: document.getElementById('nzb-storage-path').value.trim(),
@@ -5732,9 +5705,6 @@ if (displayItem.status) {
       this.updateReleaseDetailDownloaderButtons(settings);
       this.updateHomeSectionVisibility(settings);
       this.updateFanartFeatureAvailability(settings);
-      if (this.licenseStatus) {
-        this.licenseStatus.serverUrl = settings.license_server_url || '';
-      }
       this.showNotification('✓ Settings saved successfully', 'success');
     } catch (error) {
       console.error('Failed to save settings:', error);
@@ -5830,8 +5800,6 @@ if (displayItem.status) {
       document.getElementById('fanart-api-key').value = allSettings.api_fanart_key || '';
       document.getElementById('easynews-username').value = allSettings.easynews_username || '';
       document.getElementById('easynews-password').value = allSettings.easynews_password || '';
-      document.getElementById('license-server-url').value = allSettings.license_server_url || '';
-      document.getElementById('license-key-input').value = allSettings.license_key || '';
       document.getElementById('pipeline-movies-folder').value = allSettings.pipeline_movies_folder || '';
       document.getElementById('pipeline-tv-folder').value = allSettings.pipeline_tv_folder || '';
       this.updateFanartFeatureAvailability(allSettings);
@@ -5881,10 +5849,6 @@ if (displayItem.status) {
       
       // Apply library cover size
       this.applyCoverSize(allSettings.ui_library_cover_size || 'medium');
-
-      this.loadLicenseStatus().catch(error => {
-        console.error('Failed to load license status:', error);
-      });
 
       // Apply upload NNTP visibility based on "same as download" checkbox
       this.updateUploadNntpVisibility();
@@ -5992,11 +5956,6 @@ if (displayItem.status) {
   }
 
   async runPreparationPipeline(importAfterPrepare = false) {
-    if (!this.hasPremiumLicense()) {
-      this.showNotification('Smart Preparation requires a Premium license.', 'warning');
-      return;
-    }
-
     const folderSettings = this.collectPreparationFolderSettings();
     if (!folderSettings.pipeline_movies_folder && !folderSettings.pipeline_tv_folder) {
       this.showNotification('Set at least one Movies or TV preparation folder first.', 'warning');
@@ -6044,114 +6003,20 @@ if (displayItem.status) {
     }
   }
 
-  async loadLicenseStatus() {
-    try {
-      const status = await window.electron.getLicenseStatus();
-      this.updateLicenseStatusUI(status);
-      this.maybeShowLicenseLifecyclePopup(status);
-    } catch (error) {
-      console.error('Failed to load license status:', error);
-    }
+  canUseFeature(feature) {
+    return true;
   }
 
-  maybeShowLicenseLifecyclePopup(status) {
-    if (!status) return;
-
-    const now = Date.now();
-    const dayMs = 24 * 60 * 60 * 1000;
-    const state = status.status || 'free';
-    const expiresAtMs = status.expiresAt ? new Date(status.expiresAt).getTime() : NaN;
-    const graceUntilMs = status.graceUntil ? new Date(status.graceUntil).getTime() : NaN;
-    const isExpiryValid = Number.isFinite(expiresAtMs);
-    const isGraceValid = Number.isFinite(graceUntilMs);
-
-    // Case 1: active license nearing expiration (14-day warning window)
-    if (state === 'active' && isExpiryValid && expiresAtMs > now) {
-      const remainingMs = expiresAtMs - now;
-      if (remainingMs <= (14 * dayMs)) {
-        const remainingDays = Math.max(1, Math.ceil(remainingMs / dayMs));
-        const marker = this.getLicensePopupMarker(`expiring-${status.expiresAt || ''}`);
-        if (!this.hasSeenLicensePopup(marker)) {
-          const expiryText = this.formatLicenseDate(status.expiresAt);
-          alert(
-            `Your NZBarr license will expire in ${remainingDays} day${remainingDays !== 1 ? 's' : ''}.\n\n` +
-            `Expiration date: ${expiryText}\n\n` +
-            'Please renew in time to avoid interruption.'
-          );
-          this.markLicensePopupSeen(marker);
-        }
-      }
-    }
-
-    // Case 2: grace mode currently active
-    if (state === 'grace' && isGraceValid && graceUntilMs > now) {
-      const marker = this.getLicensePopupMarker(`grace-${status.graceUntil || ''}`);
-      if (!this.hasSeenLicensePopup(marker)) {
-        const graceText = this.formatLicenseDate(status.graceUntil);
-        alert(
-          'Your NZBarr license is currently in grace mode.\n\n' +
-          `Grace ends on: ${graceText}\n\n` +
-          'Please renew your license before grace ends to keep Premium features active.'
-        );
-        this.markLicensePopupSeen(marker);
-      }
-    }
+  hasFullFeatureAccess() {
+    return true;
   }
 
-  getLicensePopupMarker(scope) {
-    const today = new Date().toISOString().slice(0, 10);
-    return `${scope}|${today}`;
+  getFeatureUnavailableMessage(feature) {
+    return '';
   }
 
-  hasSeenLicensePopup(marker) {
-    try {
-      const seen = localStorage.getItem('nzbarr_license_popup_seen') || '';
-      return seen === marker;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  markLicensePopupSeen(marker) {
-    try {
-      localStorage.setItem('nzbarr_license_popup_seen', marker);
-    } catch (error) {
-      // Ignore storage failures (private mode / quota / policy)
-    }
-  }
-
-  canUseLicensedFeature(feature) {
-    if (!feature) return true;
-    const status = this.licenseStatus;
-    if (!status) return false;
-    const state = status.status || 'free';
-    return (state === 'active' || state === 'grace') && Array.isArray(status.features) && status.features.includes(feature);
-  }
-
-  hasPremiumLicense() {
-    const state = this.licenseStatus?.status || 'free';
-    return state === 'active' || state === 'grace';
-  }
-
-  getLicensedFeatureMessage(feature) {
-    const labels = {
-      send_to_downloader: 'Sending releases to SABnzbd or NZBGet is a Premium feature.',
-      bulk_actions: 'Selecting multiple releases and batch downloading are Premium features.',
-      edit_media_info: 'Editing movie and TV info is a Premium feature.',
-      custom_artwork_upload: 'Uploading custom cover, backdrop, or logo artwork is a Premium feature.',
-      fanart_artwork: 'Choosing artwork from Fanart.tv is a Premium feature.',
-      auto_refresh: 'Auto Refresh settings are available with a Premium license.',
-      owned_refresh: 'Refreshing owned releases is a Premium feature.'
-    };
-    return labels[feature] || 'This feature requires a Premium license.';
-  }
-
-  requireLicensedFeature(feature, message = '') {
-    if (this.canUseLicensedFeature(feature)) {
-      return true;
-    }
-    this.showNotification(message || this.getLicensedFeatureMessage(feature), 'warning');
-    return false;
+  requireFeature(feature, message = '') {
+    return true;
   }
 
   setLockedElementState(element, locked, lockedMessage, options = {}) {
@@ -6175,25 +6040,25 @@ if (displayItem.status) {
     }
 
     element.title = locked ? lockedMessage : defaultTitle;
-    element.classList.toggle('premium-locked', !!locked);
+    element.classList.toggle('feature-unavailable', !!locked);
   }
 
-  applyLicenseFeatureState() {
+  applyFeatureAvailabilityState() {
     [
       'pipeline-prepare-btn',
       'pipeline-prepare-import-btn'
     ].forEach((id) => {
       this.setLockedElementState(
         document.getElementById(id),
-        !this.hasPremiumLicense(),
-        'Smart Preparation requires a Premium license.'
+        !this.hasFullFeatureAccess(),
+        ''
       );
     });
 
     this.setLockedElementState(
       document.getElementById('edit-movie-info-btn'),
-      !this.canUseLicensedFeature('edit_media_info'),
-      this.getLicensedFeatureMessage('edit_media_info'),
+      !this.canUseFeature('edit_media_info'),
+      this.getFeatureUnavailableMessage('edit_media_info'),
       { disable: false }
     );
 
@@ -6205,8 +6070,8 @@ if (displayItem.status) {
     ].forEach((id) => {
       this.setLockedElementState(
         document.getElementById(id),
-        !this.canUseLicensedFeature('edit_media_info'),
-        this.getLicensedFeatureMessage('edit_media_info'),
+        !this.canUseFeature('edit_media_info'),
+        this.getFeatureUnavailableMessage('edit_media_info'),
         { disable: false }
       );
     });
@@ -6214,8 +6079,8 @@ if (displayItem.status) {
     ['cover', 'backdrop', 'logo'].forEach((assetType) => {
       this.setLockedElementState(
         document.getElementById(`edit-mi-upload-${assetType}-btn`),
-        !this.canUseLicensedFeature('custom_artwork_upload'),
-        this.getLicensedFeatureMessage('custom_artwork_upload'),
+        !this.canUseFeature('custom_artwork_upload'),
+        this.getFeatureUnavailableMessage('custom_artwork_upload'),
         { disable: false }
       );
     });
@@ -6233,273 +6098,32 @@ if (displayItem.status) {
     ].forEach((id) => {
       this.setLockedElementState(
         document.getElementById(id),
-        !this.canUseLicensedFeature('auto_refresh'),
-        this.getLicensedFeatureMessage('auto_refresh')
+        !this.canUseFeature('auto_refresh'),
+        this.getFeatureUnavailableMessage('auto_refresh')
       );
     });
 
     this.setLockedElementState(
       document.getElementById('release-refresh-btn'),
-      !this.canUseLicensedFeature('owned_refresh'),
-      this.getLicensedFeatureMessage('owned_refresh')
+      !this.canUseFeature('owned_refresh'),
+      this.getFeatureUnavailableMessage('owned_refresh')
     );
     this.setLockedElementState(
       document.getElementById('release-queue-refresh-btn'),
-      !this.canUseLicensedFeature('owned_refresh'),
-      this.getLicensedFeatureMessage('owned_refresh')
+      !this.canUseFeature('owned_refresh'),
+      this.getFeatureUnavailableMessage('owned_refresh')
     );
 
     document.querySelectorAll('.action-icon-btn[data-action="send"]').forEach((button) => {
       this.setLockedElementState(
         button,
-        !this.canUseLicensedFeature('send_to_downloader'),
-        this.getLicensedFeatureMessage('send_to_downloader')
+        !this.canUseFeature('send_to_downloader'),
+        this.getFeatureUnavailableMessage('send_to_downloader')
       );
     });
 
     this.updateReleaseDetailDownloaderButtons();
     this.updateFanartFeatureAvailability();
-  }
-
-  formatLicenseDate(value) {
-    if (!value) return '';
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) {
-      return String(value);
-    }
-    return date.toLocaleString();
-  }
-
-  formatLicensePlan(plan) {
-    if (!plan || plan === 'free') return 'Free';
-    return String(plan)
-      .split(/[_-]+/)
-      .filter(Boolean)
-      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(' ');
-  }
-
-  getLicensePortalUrl(serverUrl) {
-    if (!serverUrl) return '';
-
-    try {
-      const url = new URL(serverUrl);
-      let pathname = url.pathname || '/';
-      pathname = pathname.replace(/\/+(api\/licenses\/validate|licenses\/validate|validate)$/i, '/');
-      url.pathname = pathname.replace(/\/+$/, '') || '/';
-      url.search = '';
-      url.hash = '';
-      return url.toString();
-    } catch (error) {
-      return '';
-    }
-  }
-
-  getLicenseSupportMessage(status) {
-    const state = status?.status || 'free';
-
-    if (state === 'active') {
-      return status?.expiresAt
-        ? `Premium is active. Your current term renews or ends on ${this.formatLicenseDate(status.expiresAt)}.`
-        : 'Premium is active and all licensed features are currently available.';
-    }
-
-    if (state === 'grace') {
-      const graceUntil = this.formatLicenseDate(status?.graceUntil);
-      return graceUntil
-        ? `This license is currently in grace mode. Premium remains available until ${graceUntil}.`
-        : 'This license is currently in grace mode. Premium remains available temporarily.';
-    }
-
-    if (state === 'expired') {
-      const expiresAt = this.formatLicenseDate(status?.expiresAt);
-      return expiresAt
-        ? `This license expired on ${expiresAt}. NZBarr is now in Free mode until the license is renewed.`
-        : 'This license has expired. NZBarr is now in Free mode until the license is renewed.';
-    }
-
-    if (state === 'revoked') {
-      return 'This license has been revoked. Premium features are locked until a valid license is activated again.';
-    }
-
-    if (state === 'invalid') {
-      return 'The stored license could not be validated. Check the key and server details, then refresh or activate again.';
-    }
-
-    return 'NZBarr is currently in Free mode. Activate a license to unlock downloader send, editing, artwork tools, and refresh automation.';
-  }
-
-  updateLicenseStatusUI(status) {
-    this.licenseStatus = status || null;
-
-    const card = document.getElementById('license-status-card');
-    const pill = document.getElementById('license-status-pill');
-    const line = document.getElementById('license-status-line');
-    const support = document.getElementById('license-status-support');
-    const meta = document.getElementById('license-status-meta');
-    const openServerBtn = document.getElementById('license-open-server-btn');
-    const headerPill = document.querySelector('.header-status-pill');
-
-    const state = status?.status || 'free';
-    const labelMap = {
-      free: 'Free',
-      active: 'Premium Active',
-      grace: 'Premium Grace',
-      expired: 'Premium Expired',
-      revoked: 'Revoked',
-      invalid: 'Invalid'
-    };
-
-    if (card) {
-      card.className = `license-status-card state-${state}`;
-    }
-
-    if (pill) {
-      pill.textContent = labelMap[state] || 'Free';
-      pill.className = `license-status-pill status-${state}`;
-    }
-
-    if (line) {
-      if (state === 'active') {
-        line.textContent = status?.message || 'License is active and premium features are available.';
-      } else if (state === 'grace') {
-        line.textContent = status?.message || 'License is in grace mode. Premium features remain available temporarily.';
-      } else if (state === 'expired') {
-        line.textContent = status?.message || 'License expired. NZBarr is currently running in Free mode.';
-      } else if (state === 'invalid' || state === 'revoked') {
-        line.textContent = status?.message || 'License is not valid. NZBarr is currently running in Free mode.';
-      } else {
-        line.textContent = 'No license active. NZBarr is currently running in Free mode.';
-      }
-    }
-
-    if (support) {
-      support.textContent = this.getLicenseSupportMessage(status);
-    }
-
-    if (meta) {
-      const lines = [];
-      lines.push(`Access: ${state === 'active' || state === 'grace' ? 'Premium features available' : 'Free mode only'}`);
-      if (status?.plan && status.plan !== 'free') lines.push(`Plan: ${this.formatLicensePlan(status.plan)}`);
-      if (status?.customerEmail) lines.push(`Customer: ${status.customerEmail}`);
-      if (status?.expiresAt) lines.push(`Expires: ${this.formatLicenseDate(status.expiresAt)}`);
-      if (status?.graceUntil && state === 'grace') lines.push(`Grace until: ${this.formatLicenseDate(status.graceUntil)}`);
-      if (status?.lastValidatedAt) lines.push(`Last validated: ${this.formatLicenseDate(status.lastValidatedAt)}`);
-      if (status?.machineId) lines.push(`Machine ID: ${status.machineId}`);
-      meta.textContent = lines.join('\n');
-    }
-
-    if (headerPill) {
-      const headerLabelMap = {
-        free: 'Free Lounge',
-        active: 'Premium Active',
-        grace: 'Premium Grace',
-        expired: 'Premium Expired',
-        revoked: 'License Revoked',
-        invalid: 'License Issue'
-      };
-      headerPill.textContent = headerLabelMap[state] || 'Free Lounge';
-      headerPill.className = `header-status-pill status-${state}`;
-    }
-
-    if (openServerBtn) {
-      const portalUrl = this.getLicensePortalUrl(status?.serverUrl || '');
-      const shouldShow = Boolean(portalUrl) && ['active', 'grace', 'expired', 'invalid', 'revoked'].includes(state);
-      openServerBtn.hidden = !shouldShow;
-      openServerBtn.textContent = state === 'expired' ? 'Renew License' : 'Open License Server';
-      openServerBtn.dataset.url = portalUrl;
-      openServerBtn.title = shouldShow ? portalUrl : '';
-    }
-
-    this.applyLicenseFeatureState();
-  }
-
-  async openLicenseServer() {
-    const button = document.getElementById('license-open-server-btn');
-    const url = button?.dataset?.url || this.getLicensePortalUrl(this.licenseStatus?.serverUrl || '');
-
-    if (!url) {
-      this.showNotification('No license server URL is configured yet.', 'warning');
-      return;
-    }
-
-    try {
-      await window.electron.openExternal(url);
-    } catch (error) {
-      this.showNotification(`Could not open license server: ${error.message}`, 'error');
-    }
-  }
-
-  formatSupportCode(diagnostics) {
-    const payload = {
-      generatedAt: diagnostics?.generatedAt || new Date().toISOString(),
-      app: diagnostics?.app || {},
-      license: diagnostics?.license || {}
-    };
-    return `NZBARR-SUPPORT-CODE-V1\n${JSON.stringify(payload, null, 2)}`;
-  }
-
-  async copyLicenseSupportCode() {
-    try {
-      const result = await window.electron.getSupportDiagnostics();
-      if (!result?.success || !result?.diagnostics) {
-        throw new Error(result?.error || 'Could not gather support diagnostics');
-      }
-
-      const supportCode = this.formatSupportCode(result.diagnostics);
-      const copied = await window.electron.copyToClipboard(supportCode);
-      if (!copied?.success) {
-        throw new Error(copied?.error || 'Clipboard copy failed');
-      }
-
-      this.showNotification('Support code copied to clipboard', 'success');
-    } catch (error) {
-      this.showNotification(`Could not copy support code: ${error.message}`, 'error');
-    }
-  }
-
-  async activateLicense() {
-    const key = document.getElementById('license-key-input')?.value?.trim();
-    const serverUrl = document.getElementById('license-server-url')?.value?.trim();
-
-    try {
-      const result = await window.electron.activateLicense({ key, serverUrl });
-      if (!result?.success) {
-        throw new Error(result?.error || 'License activation failed');
-      }
-      this.updateLicenseStatusUI(result.status);
-      this.showNotification('License activated', 'success');
-    } catch (error) {
-      this.showNotification(`License activation failed: ${error.message}`, 'error');
-    }
-  }
-
-  async refreshLicense() {
-    try {
-      const result = await window.electron.refreshLicense();
-      if (!result?.success) {
-        throw new Error(result?.error || 'License refresh failed');
-      }
-      this.updateLicenseStatusUI(result.status);
-      this.showNotification('License refreshed', 'success');
-    } catch (error) {
-      this.showNotification(`License refresh failed: ${error.message}`, 'error');
-    }
-  }
-
-  async clearLicense() {
-    try {
-      const result = await window.electron.clearLicense();
-      if (!result?.success) {
-        throw new Error(result?.error || 'License clear failed');
-      }
-      const keyInput = document.getElementById('license-key-input');
-      if (keyInput) keyInput.value = '';
-      this.updateLicenseStatusUI(result.status);
-      this.showNotification('License cleared', 'success');
-    } catch (error) {
-      this.showNotification(`License clear failed: ${error.message}`, 'error');
-    }
   }
 
   // Player
@@ -6714,7 +6338,7 @@ if (displayItem.status) {
     const uploadCoverInput = document.getElementById('edit-mi-cover-file');
     if (uploadCoverBtn && uploadCoverInput) {
       uploadCoverBtn.addEventListener('click', () => {
-        if (!this.requireLicensedFeature('custom_artwork_upload')) return;
+        if (!this.requireFeature('custom_artwork_upload')) return;
         uploadCoverInput.click();
       });
       uploadCoverInput.addEventListener('change', () => this.uploadEditMovieInfoAsset('cover'));
@@ -6729,7 +6353,7 @@ if (displayItem.status) {
     const uploadBackdropInput = document.getElementById('edit-mi-backdrop-file');
     if (uploadBackdropBtn && uploadBackdropInput) {
       uploadBackdropBtn.addEventListener('click', () => {
-        if (!this.requireLicensedFeature('custom_artwork_upload')) return;
+        if (!this.requireFeature('custom_artwork_upload')) return;
         uploadBackdropInput.click();
       });
       uploadBackdropInput.addEventListener('change', () => this.uploadEditMovieInfoAsset('backdrop'));
@@ -6744,7 +6368,7 @@ if (displayItem.status) {
     const uploadLogoInput = document.getElementById('edit-mi-logo-file');
     if (uploadLogoBtn && uploadLogoInput) {
       uploadLogoBtn.addEventListener('click', () => {
-        if (!this.requireLicensedFeature('custom_artwork_upload')) return;
+        if (!this.requireFeature('custom_artwork_upload')) return;
         uploadLogoInput.click();
       });
       uploadLogoInput.addEventListener('change', () => this.uploadEditMovieInfoAsset('logo'));
@@ -6984,17 +6608,17 @@ if (displayItem.status) {
     const refreshBtn = document.getElementById('release-refresh-btn');
     if (refreshBtn) {
       // Refresh button now works for all releases via SABnzbd-based pipeline
-      refreshBtn.disabled = !this.canUseLicensedFeature('owned_refresh');
-      refreshBtn.title = this.canUseLicensedFeature('owned_refresh') ? '' : this.getLicensedFeatureMessage('owned_refresh');
+      refreshBtn.disabled = !this.canUseFeature('owned_refresh');
+      refreshBtn.title = this.canUseFeature('owned_refresh') ? '' : this.getFeatureUnavailableMessage('owned_refresh');
     }
     const queueRefreshBtn = document.getElementById('release-queue-refresh-btn');
     if (queueRefreshBtn) {
-      queueRefreshBtn.disabled = !this.canUseLicensedFeature('owned_refresh');
-      queueRefreshBtn.title = this.canUseLicensedFeature('owned_refresh') ? '' : this.getLicensedFeatureMessage('owned_refresh');
+      queueRefreshBtn.disabled = !this.canUseFeature('owned_refresh');
+      queueRefreshBtn.title = this.canUseFeature('owned_refresh') ? '' : this.getFeatureUnavailableMessage('owned_refresh');
     }
 
     this.updateReleaseDetailDownloaderButtons();
-    this.applyLicenseFeatureState();
+    this.applyFeatureAvailabilityState();
 
     // NFO section
     const nfoSection = document.getElementById('nfo-section');
@@ -7732,7 +7356,7 @@ if (displayItem.status) {
     }
 
     document.getElementById('edit-movie-info-overlay').classList.remove('hidden');
-    this.applyLicenseFeatureState();
+    this.applyFeatureAvailabilityState();
     this.updateFanartFeatureAvailability();
   }
 
@@ -7808,7 +7432,7 @@ if (displayItem.status) {
   }
 
   async uploadEditMovieInfoAsset(assetType = 'cover') {
-    if (!this.requireLicensedFeature('custom_artwork_upload')) return;
+    if (!this.requireFeature('custom_artwork_upload')) return;
 
     const item = this.currentDetailItem;
     if (!item) return;
@@ -7897,7 +7521,7 @@ if (displayItem.status) {
   }
 
   async openFanartArtworkPicker(assetType = 'cover') {
-    if (!this.requireLicensedFeature('fanart_artwork')) return;
+    if (!this.requireFeature('fanart_artwork')) return;
 
     const item = this.currentDetailItem;
     if (!item) return;
@@ -8002,7 +7626,7 @@ if (displayItem.status) {
   }
 
   async saveEditMovieInfo() {
-    if (!this.requireLicensedFeature('edit_media_info')) return;
+    if (!this.requireFeature('edit_media_info')) return;
 
     const item = this.currentDetailItem;
     if (!item) return;
@@ -8119,7 +7743,7 @@ if (displayItem.status) {
   }
 
   async fetchTMDBForEditMovieInfo() {
-    if (!this.requireLicensedFeature('edit_media_info')) return;
+    if (!this.requireFeature('edit_media_info')) return;
 
     const tmdbId = document.getElementById('edit-mi-tmdb-id').value.trim();
     const item = this.currentDetailItem;
@@ -8231,7 +7855,7 @@ if (displayItem.status) {
 
   // TMDB Search & Link Dialog
   openTMDBSearchDialog() {
-    if (!this.requireLicensedFeature('edit_media_info')) return;
+    if (!this.requireFeature('edit_media_info')) return;
 
     const item = this.currentDetailItem;
     if (!item) return;
@@ -8487,7 +8111,7 @@ if (displayItem.status) {
   }
 
   async deleteFullMovieInfo() {
-    if (!this.requireLicensedFeature('edit_media_info')) return;
+    if (!this.requireFeature('edit_media_info')) return;
 
     const item = this.currentDetailItem;
     if (!item) return;
@@ -8556,8 +8180,8 @@ if (displayItem.status) {
   }
 
   async sendReleaseIdToDownloader(releaseId, target = 'preferred', showSuccess = false) {
-    if (!this.requireLicensedFeature('send_to_downloader')) {
-      throw new Error(this.getLicensedFeatureMessage('send_to_downloader'));
+    if (!this.requireFeature('send_to_downloader')) {
+      throw new Error(this.getFeatureUnavailableMessage('send_to_downloader'));
     }
 
     const result = await window.electron.sendReleaseToDownloader(releaseId, target);
@@ -8573,7 +8197,7 @@ if (displayItem.status) {
   }
 
   async sendMultipleReleasesToDownloader(releaseIds, target = 'preferred') {
-    if (!this.requireLicensedFeature('send_to_downloader')) return;
+    if (!this.requireFeature('send_to_downloader')) return;
     if (!Array.isArray(releaseIds) || releaseIds.length === 0) return;
 
     let successCount = 0;
@@ -8602,7 +8226,7 @@ if (displayItem.status) {
   }
 
   async queueMultipleReleasesForRefresh(releaseIds) {
-    if (!this.requireLicensedFeature('owned_refresh')) return;
+    if (!this.requireFeature('owned_refresh')) return;
     if (!Array.isArray(releaseIds) || releaseIds.length === 0) return;
 
     try {
@@ -8705,13 +8329,13 @@ if (displayItem.status) {
 
       const refreshBtn = document.getElementById('release-refresh-btn');
       if (refreshBtn) {
-        refreshBtn.disabled = ownershipType !== 'owned' || !this.canUseLicensedFeature('owned_refresh');
-        refreshBtn.title = this.canUseLicensedFeature('owned_refresh') ? '' : this.getLicensedFeatureMessage('owned_refresh');
+        refreshBtn.disabled = ownershipType !== 'owned' || !this.canUseFeature('owned_refresh');
+        refreshBtn.title = this.canUseFeature('owned_refresh') ? '' : this.getFeatureUnavailableMessage('owned_refresh');
       }
       const queueRefreshBtn = document.getElementById('release-queue-refresh-btn');
       if (queueRefreshBtn) {
-        queueRefreshBtn.disabled = !this.canUseLicensedFeature('owned_refresh');
-        queueRefreshBtn.title = this.canUseLicensedFeature('owned_refresh') ? '' : this.getLicensedFeatureMessage('owned_refresh');
+        queueRefreshBtn.disabled = !this.canUseFeature('owned_refresh');
+        queueRefreshBtn.title = this.canUseFeature('owned_refresh') ? '' : this.getFeatureUnavailableMessage('owned_refresh');
       }
 
       document.getElementById('release-refresh-status').textContent =
@@ -8725,7 +8349,7 @@ if (displayItem.status) {
   }
 
   async refreshOwnedRelease() {
-    if (!this.requireLicensedFeature('owned_refresh')) return;
+    if (!this.requireFeature('owned_refresh')) return;
 
     const release = this.currentReleaseDetail;
     if (!release) return;
@@ -8776,7 +8400,7 @@ if (displayItem.status) {
   }
 
   async queueCurrentReleaseForRefresh() {
-    if (!this.requireLicensedFeature('owned_refresh')) return;
+    if (!this.requireFeature('owned_refresh')) return;
 
     const release = this.currentReleaseDetail;
     if (!release) return;

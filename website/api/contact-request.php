@@ -246,7 +246,7 @@ if ($topic === '' || $name === '' || $email === '' || $subjectInput === '' || $m
 
 $recipientMap = [
     'general' => 'info@nzbarr.com',
-    'license' => 'license@nzbarr.com',
+    'support' => 'hello@nzbarr.com',
     'support' => 'support@nzbarr.com'
 ];
 

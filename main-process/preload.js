@@ -59,11 +59,7 @@ contextBridge.exposeInMainWorld('electron', {
   saveNNTPSettings: (settings) => ipcRenderer.invoke('settings:saveNNTP', settings),
   saveSettings: (settings) => ipcRenderer.invoke('settings:saveAll', settings),
   runPreparationPipeline: (options) => ipcRenderer.invoke('pipeline:run', options),
-  getLicenseStatus: () => ipcRenderer.invoke('license:getStatus'),
   getSupportDiagnostics: () => ipcRenderer.invoke('support:getDiagnostics'),
-  activateLicense: (params) => ipcRenderer.invoke('license:activate', params),
-  refreshLicense: () => ipcRenderer.invoke('license:refresh'),
-  clearLicense: () => ipcRenderer.invoke('license:clear'),
 
   // NZB Import
   importNZBFiles: () => ipcRenderer.invoke('nzb:importFiles'),

@@ -6,15 +6,15 @@ This folder contains the public NZBarr marketing site for `nzbarr.com`.
 
 - what NZBarr is
 - how the desktop app works
-- pricing for Free, Yearly, and Lifetime
+- free open-source downloads
 - manuals and how-to content
 - FAQ content for new users
 - the cross-platform support story
-- the licensing/backend split for production
+- the GitHub source repository
 
 ## Hosting
 
-Most of the site is static HTML/CSS/JS, but the `payment-complete` flow now posts to a small PHP endpoint so the server can send the email directly.
+Most of the site is static HTML/CSS/JS, with a small PHP endpoint for the contact form.
 
 That means the website should be hosted on a PHP-capable server such as:
 
@@ -24,8 +24,8 @@ That means the website should be hosted on a PHP-capable server such as:
 
 ## Local Development
 
-- Point MAMP at the `website/` folder to test the site in a browser, including the `api/license-request.php` endpoint.
-- Copy `website/api/config.sample.php` to `website/api/config.php` on the server and fill in the SMTP mailbox password before testing the payment form.
+- Point MAMP at the `website/` folder to test the site in a browser, including the contact endpoint.
+- Copy `website/api/config.sample.php` to `website/api/config.php` on the server and fill in the SMTP mailbox password before testing the contact form.
 - Keep `website/api/config.php` private and out of any public upload or source control.
 - Keep images and other assets inside `website/assets/` so the site remains self-contained.
 - When you are happy with the result, copy the full `website/` folder to the server.
@@ -33,13 +33,12 @@ That means the website should be hosted on a PHP-capable server such as:
 ## Suggested Domain Layout
 
 - `nzbarr.com` for the marketing site
-- `license.nzbarr.com` for the license API
+- this GitHub repository for source code and issue tracking
 
 ## Content Notes
 
-- Replace the placeholder purchase links with your real checkout or sales pages when ready.
 - Update the FAQ and manuals as the app changes.
-- The site is intentionally built with plain HTML/CSS/JS, with one small PHP endpoint for the payment form.
+- The site is intentionally built with plain HTML/CSS/JS, with one small PHP endpoint for the contact form.
 
 ## Notes
 

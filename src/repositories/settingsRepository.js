@@ -59,21 +59,6 @@ class SettingsRepository {
       ('api_imdb_key', '', 'IMDB/OMDb API key'),
       ('api_musicbrainz_key', '', 'MusicBrainz API key'),
       ('api_audiodb_key', '', 'TheAudioDB API key'),
-      ('license_key', '', 'NZBarr license key'),
-      ('license_verified', '0', 'License verification status'),
-      ('license_checked_at', '', 'Last license check timestamp'),
-      ('license_status', 'free', 'Current license status'),
-      ('license_plan', 'free', 'Current license plan'),
-      ('license_expires_at', '', 'License expiration timestamp'),
-      ('license_last_validated_at', '', 'Last successful license validation timestamp'),
-      ('license_grace_until', '', 'License grace-period timestamp'),
-      ('license_machine_id', '', 'Local machine identifier for license activation'),
-      ('license_features_json', '[]', 'JSON array of licensed feature flags'),
-      ('license_public_key_pem', '', 'Trusted license signature public key (PEM)'),
-      ('license_public_keys_json', '[]', 'Trusted license signature keys JSON array'),
-      ('license_customer_email', '', 'Customer email tied to current license'),
-      ('license_message', '', 'Latest license server message'),
-      ('license_server_url', '', 'License server base URL'),
       ('pipeline_movies_folder', '', 'Source folder for movie NZB preparation'),
       ('pipeline_tv_folder', '', 'Source folder for TV NZB preparation'),
       ('archive_work_path', '', 'Working directory for owned media refresh jobs'),
@@ -316,64 +301,6 @@ class SettingsRepository {
       showAtAGlance: settings.ui_show_at_a_glance !== '0',
       showFreshlyPolished: settings.ui_show_freshly_polished !== '0'
     };
-  }
-
-  /**
-   * Get license info
-   */
-  async getLicenseInfo() {
-    const settings = await this.getMany([
-      'license_key',
-      'license_verified',
-      'license_checked_at',
-      'license_status',
-      'license_plan',
-      'license_expires_at',
-      'license_last_validated_at',
-      'license_grace_until',
-      'license_machine_id',
-      'license_features_json',
-      'license_customer_email',
-      'license_message',
-      'license_server_url'
-    ]);
-
-    return {
-      key: settings.license_key || '',
-      verified: settings.license_verified === '1',
-      checkedAt: settings.license_checked_at || null,
-      status: settings.license_status || 'free',
-      plan: settings.license_plan || 'free',
-      expiresAt: settings.license_expires_at || null,
-      lastValidatedAt: settings.license_last_validated_at || null,
-      graceUntil: settings.license_grace_until || null,
-      machineId: settings.license_machine_id || '',
-      featuresJson: settings.license_features_json || '[]',
-      customerEmail: settings.license_customer_email || '',
-      message: settings.license_message || '',
-      serverUrl: settings.license_server_url || ''
-    };
-  }
-
-  /**
-   * Update license info
-   */
-  async updateLicenseInfo(license) {
-    return await this.setMany({
-      license_key: license.key || '',
-      license_verified: license.verified ? '1' : '0',
-      license_checked_at: license.checkedAt || new Date().toISOString(),
-      license_status: license.status || (license.verified ? 'active' : 'free'),
-      license_plan: license.plan || 'free',
-      license_expires_at: license.expiresAt || '',
-      license_last_validated_at: license.lastValidatedAt || '',
-      license_grace_until: license.graceUntil || '',
-      license_machine_id: license.machineId || '',
-      license_features_json: license.featuresJson || '[]',
-      license_customer_email: license.customerEmail || '',
-      license_message: license.message || '',
-      license_server_url: license.serverUrl || ''
-    });
   }
 
   /**
