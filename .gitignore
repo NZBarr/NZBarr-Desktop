@@ -18,6 +18,7 @@ Thumbs.db
 .idea/
 .opencode/
 .sixth/
+*.code-workspace
 
 # Logs
 *.log
@@ -34,3 +35,4 @@ npm-debug.log*
 BAK/
 website/api/config.php
 license-server/config.php
+.opencode
