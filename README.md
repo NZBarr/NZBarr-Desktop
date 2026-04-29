@@ -5,11 +5,8 @@ Your personal Usenet media library - like Infuse, but for NZB files.
 ## Overview
 
 NZBarr Desktop is a standalone desktop application that:
-- Browses and indexes Usenet content
 - Stores NZB files as your library (tiny storage)
 - Downloads content on-demand when you want to watch
-- Plays content locally in your preferred player
-- Deletes downloaded content after watching (free up space)
 
 NZBarr is free and open source software licensed under GPL-3.0-or-later.
 
