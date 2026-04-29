@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NZBarr</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <div class="header-left">
+        <div class="brand-lockup">
+          <div class="brand-mark">
+            <img src="assets/images/nzbarr-logo-classic.svg" alt="NZBarr">
+          </div>
+          <div class="brand-copy">
+            <div class="brand-name">NZBarr</div>
+            <div class="brand-tagline">Private screening lounge for your Usenet library</div>
+          </div>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <button class="nav-btn active" data-page="categories">Home</button>
+        <button class="nav-btn" data-page="browse">Browse</button>
+        <button class="nav-btn" data-page="library">My Library</button>
+        <button class="nav-btn" data-page="streams">Streams</button>
+        <button class="nav-btn" data-page="collections">Collections</button>
+        <button class="nav-btn" data-page="settings">Settings</button>
+      </nav>
+      <div class="header-right">
+        <div class="header-status-pill">Premium Lounge</div>
+        <span class="version-badge">v0.1.0</span>
+      </div>
+    </header>
+
+    <main class="app-content">
+      <!-- Categories Page (Home) -->
+      <section id="page-categories" class="page active">
+        <div class="home-page-shell">
+          <div class="home-lobby-intro">
+            <div class="home-lobby-copy">
+              <div class="home-lobby-kicker">Private Screening Lounge</div>
+              <h1 class="home-lobby-title">Welcome to NZBarr</h1>
+              <p class="home-lobby-subtitle">A luxurious entrance to your Usenet library, where every film and series feels curated, polished, and ready for opening night.</p>
+            </div>
+            <div class="home-lobby-ornament">
+              <div class="home-lobby-orb home-lobby-orb-one"></div>
+              <div class="home-lobby-orb home-lobby-orb-two"></div>
+              <div class="home-lobby-orb home-lobby-orb-three"></div>
+            </div>
+          </div>
+
+        <!-- Hero Slider -->
+        <div class="hero-slider" id="hero-slider">
+          <div class="hero-slides" id="hero-slides"></div>
+          <div class="hero-timer-line" id="hero-timer-line"></div>
+          <button class="hero-nav-btn hero-prev" id="hero-prev">‹</button>
+          <button class="hero-nav-btn hero-next" id="hero-next">›</button>
+        </div>
+
+        <!-- Media Carousels -->
+        <div class="home-sections">
+          <!-- Movies Carousel -->
+          <div class="media-section" id="carousel-movies">
+            <div class="home-section-kicker">Featured Movies</div>
+            <div class="media-row-wrapper">
+              <button class="row-arrow left" data-target="movies-slider">‹</button>
+              <div class="media-row" id="movies-slider"></div>
+              <button class="row-arrow right" data-target="movies-slider">›</button>
+            </div>
+          </div>
+
+          <!-- TV Shows Carousel -->
+          <div class="media-section" id="carousel-tv">
+            <div class="home-section-kicker">Featured Series</div>
+            <div class="media-row-wrapper">
+              <button class="row-arrow left" data-target="tv-slider">‹</button>
+              <div class="media-row" id="tv-slider"></div>
+              <button class="row-arrow right" data-target="tv-slider">›</button>
+            </div>
+          </div>
+
+</div>
+
+        <div class="home-curated-layout">
+          <section class="home-spotlight-section">
+            <div class="home-section-header">
+              <div class="home-section-copy">
+                <div class="home-section-kicker">Grand Vault</div>
+              </div>
+              <button class="home-section-kicker home-section-link" id="home-open-collections-btn">Open Collections</button>
+            </div>
+            <div class="home-spotlight-grid" id="home-collection-spotlights"></div>
+          </section>
+
+          <section class="home-concierge-section">
+            <div class="home-section-header">
+              <div>
+                <div class="home-section-kicker">At A Glance</div>
+              </div>
+            </div>
+            <div class="trust-grid concierge-grid">
+              <div class="trust-card concierge-card" id="home-indexed-card">
+                <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9 1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
+                <div class="trust-number" id="stat-total">0</div>
+                <div class="trust-label">Indexed Releases</div>
+              </div>
+              <div class="trust-card concierge-card" id="home-collections-card">
+                <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
+                <div class="trust-number" id="stat-collections">0</div>
+                <div class="trust-label">Collections</div>
+              </div>
+              <div class="trust-card concierge-card" id="home-refreshed-card">
+                <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></div>
+                <div class="trust-number" id="stat-refreshed">0</div>
+                <div class="trust-label">Movies</div>
+              </div>
+              <div class="trust-card concierge-card" id="home-attention-card">
+                <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2 1 21h22L12 2zm1 16h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div>
+                <div class="trust-number" id="stat-attention">0</div>
+                <div class="trust-label">TV Shows</div>
+              </div>
+            </div>
+            <div class="home-concierge-note" id="home-concierge-note"></div>
+          </section>
+
+          <section class="home-refresh-section">
+            <div class="home-section-header">
+              <div>
+                <div class="home-section-kicker">Freshly Polished</div>
+              </div>
+            </div>
+            <div class="home-refresh-rail" id="home-refresh-rail"></div>
+          </section>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="home-empty-state">
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9 1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          </div>
+          <h3>Your library is empty</h3>
+          <p>Import NZB files to get started</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- Link NZBs to Media Page -->
+      <section id="page-link-nzbs" class="page">
+        <div class="link-nzbs-page">
+          <div class="link-nzbs-header">
+            <h2>Link NZB Files to Media</h2>
+            <p class="link-nzbs-subtitle">Select a movie or TV show from your library, then choose NZB files to link to it</p>
+          </div>
+
+          <!-- Step 1: Search and Select Media -->
+          <div class="link-step" id="link-step-media">
+            <h3 class="link-step-title">1. Search and Select Media</h3>
+            <div class="link-search-wrapper">
+              <input type="text" id="link-media-search" class="link-search-input" placeholder="Type to search movies/TV shows..." autocomplete="off">
+              <span class="link-search-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+            <div class="link-search-results" id="link-search-results">
+              <span class="link-search-hint">Start typing to search your library...</span>
+            </div>
+          </div>
+
+          <!-- Step 2: Select NZB Files -->
+          <div class="link-step hidden" id="link-step-files">
+            <h3 class="link-step-title">2. Select NZB Files</h3>
+            <div class="link-file-select">
+              <input type="text" id="link-nzb-paths" class="link-file-display" readonly placeholder="Click Browse to select NZB files...">
+              <button class="link-browse-btn" id="link-browse-btn">
+                <svg class="inline-icon" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+                Browse...
+              </button>
+            </div>
+            <div class="link-file-list" id="link-file-list"></div>
+          </div>
+
+          <!-- Step 3: Link -->
+          <div class="link-step hidden" id="link-step-action">
+            <div class="link-selected-display" id="link-selected-display"></div>
+            <button class="link-submit-btn" id="link-submit-btn" disabled>
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+              Link NZBs to Selected Media
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Library Page -->
+      <section id="page-library" class="page">
+        <div class="library-page-content">
+          <div class="library-page-hero">
+            <div>
+              <div class="library-page-kicker">Curated Collection</div>
+              <h2 class="library-page-title">My Library</h2>
+              <p class="library-page-subtitle">Browse your linked movies and series with richer filtering, cleaner covers, and quick jumps into detail pages.</p>
+            </div>
+          </div>
+
+          <!-- Header with search -->
+          <div class="library-header">
+            <div class="library-search">
+              <input type="text" placeholder="Search titles, years, genres..." id="library-search" class="library-search-input">
+              <span class="library-search-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- Category Pills -->
+          <div class="library-category-pills" id="library-category-pills"></div>
+
+          <!-- Genre/Filter Pills -->
+          <div class="library-genre-pills" id="library-genre-pills"></div>
+
+          <!-- Results Count -->
+          <div class="library-results-count" id="library-results-count"></div>
+
+          <!-- Pagination -->
+          <div class="library-pagination" id="library-pagination"></div>
+
+          <!-- Cover Grid -->
+          <div class="library-grid" id="library-grid">
+            <div class="empty-state">
+              <div class="empty-icon">
+                <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9 1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+              </div>
+              <h3>Your library is empty</h3>
+              <p>Import NZB files to get started</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="page-streams" class="page">
+        <div class="stream-page">
+          <div class="stream-hero">
+            <div>
+              <div class="library-page-kicker">Direct Stream Library</div>
+              <h2 class="library-page-title">Streams</h2>
+              <p class="library-page-subtitle">A local media shelf for direct playable URLs. NZBarr stores metadata and artwork, not the video files.</p>
+            </div>
+            <div class="stream-stat-strip" id="stream-stat-strip"></div>
+          </div>
+
+          <div class="stream-import-band">
+            <div class="stream-import-main">
+              <textarea id="stream-url-input" class="stream-url-input" rows="5" placeholder="Paste Easynews media URLs, one per line"></textarea>
+              <div class="stream-import-actions">
+                <button id="stream-import-btn" class="primary-action-btn">
+                  <svg class="inline-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                  Import URLs
+                </button>
+                <button id="stream-import-file-btn" class="secondary-action-btn">
+                  <svg class="inline-icon" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+                  Import File
+                </button>
+                <button id="stream-refresh-metadata-btn" class="secondary-action-btn">
+                  <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                  Refresh Artwork
+                </button>
+              </div>
+              <div id="stream-import-result" class="stream-import-result"></div>
+            </div>
+          </div>
+
+          <div class="stream-toolbar">
+            <div class="stream-search">
+              <input id="stream-search" class="library-search-input" type="text" placeholder="Search stream titles and filenames">
+            </div>
+            <div class="stream-filter-pills" id="stream-filter-pills">
+              <button class="stream-filter active" data-view="all">All</button>
+              <button class="stream-filter" data-media-type="movie">Movies</button>
+              <button class="stream-filter" data-media-type="tv">TV</button>
+              <button class="stream-filter" data-view="recent">Recently Added</button>
+              <button class="stream-filter" data-view="favorites">Favorites</button>
+              <button class="stream-filter" data-view="unwatched">Unwatched</button>
+            </div>
+          </div>
+
+          <div id="stream-library-grid" class="stream-library-grid"></div>
+        </div>
+      </section>
+
+      <section id="page-collections" class="page">
+        <div class="library-page-content collections-page-content">
+          <div class="library-page-hero collections-page-hero">
+            <div>
+              <div class="library-page-kicker">Franchise Vault</div>
+              <h2 class="library-page-title">Collections</h2>
+              <p class="library-page-subtitle">Track film collections as complete sets, spot what you own, and quickly see which titles are still missing from the shelf.</p>
+            </div>
+          </div>
+
+          <div class="library-header">
+            <div class="library-search">
+              <input type="text" placeholder="Search collections..." id="collections-search" class="library-search-input">
+              <span class="library-search-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="library-results-count" id="collections-results-count"></div>
+          <div class="library-pagination" id="collections-pagination"></div>
+          <div class="collections-grid" id="collections-grid"></div>
+        </div>
+      </section>
+
+      <!-- Add Media Page (Manual Entry) -->
+      <section id="page-uploads" class="page">
+        <div class="add-media-page">
+          <!-- Header -->
+          <div class="add-media-header">
+            <div class="add-media-kicker">Curator Desk</div>
+            <h2>Add Media to Library</h2>
+            <p class="add-media-subtitle">Manually add movies, TV shows, or other media that isn't in TMDB</p>
+          </div>
+
+          <!-- Media Type Selector -->
+          <div class="add-media-type-selector">
+            <button class="media-type-pill active" data-type="movie">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+              Movie
+            </button>
+            <button class="media-type-pill" data-type="tv">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+              TV Show
+            </button>
+          </div>
+
+          <!-- Form -->
+          <form id="add-media-form" class="add-media-form">
+            <!-- Basic Info -->
+            <div class="form-section">
+              <h3 class="form-section-title">Basic Information</h3>
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label for="am-title">Title *</label>
+                  <div class="add-media-autocomplete">
+                    <input type="text" id="am-title" class="form-input" placeholder="e.g., The Matrix" required autocomplete="off">
+                    <div id="am-tmdb-results" class="add-media-tmdb-results hidden" aria-live="polite"></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="am-year">Year</label>
+                  <input type="number" id="am-year" class="form-input" placeholder="e.g., 1999" min="1900" max="2099">
+                </div>
+                <div class="form-group">
+                  <label for="am-rating">Rating (0-10)</label>
+                  <input type="number" id="am-rating" class="form-input" placeholder="e.g., 8.7" min="0" max="10" step="0.1">
+                </div>
+                <div class="form-group">
+                  <label for="am-imdb">IMDb ID</label>
+                  <input type="text" id="am-imdb" class="form-input" placeholder="tt1234567">
+                </div>
+                <div class="form-group">
+                  <label for="am-tmdb">TMDB ID</label>
+                  <input type="number" id="am-tmdb" class="form-input" placeholder="12345">
+                </div>
+                <div class="form-group full-width">
+                  <label for="am-genres">Genres (comma separated)</label>
+                  <input type="text" id="am-genres" class="form-input" placeholder="e.g., Action, Sci-Fi, Thriller">
+                </div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-section">
+              <h3 class="form-section-title">Description</h3>
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label for="am-plot">Plot / Overview</label>
+                  <textarea id="am-plot" class="form-textarea" rows="4" placeholder="Enter a brief description..."></textarea>
+                </div>
+                <div class="form-group full-width">
+                  <label for="am-tagline">Tagline</label>
+                  <input type="text" id="am-tagline" class="form-input" placeholder="e.g., Welcome to the Real World">
+                </div>
+              </div>
+            </div>
+
+            <!-- TV Only Fields -->
+            <div class="form-section tv-only-fields hidden">
+              <h3 class="form-section-title">TV Details</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="am-seasons">Number of Seasons</label>
+                  <input type="number" id="am-seasons" class="form-input" placeholder="1" min="1">
+                </div>
+                <div class="form-group">
+                  <label for="am-episodes">Number of Episodes</label>
+                  <input type="number" id="am-episodes" class="form-input" placeholder="10" min="0">
+                </div>
+                <div class="form-group">
+                  <label for="am-status">Status</label>
+                  <select id="am-status" class="form-input">
+                    <option value="">-- Select --</option>
+                    <option value="Returning Series">Returning Series</option>
+                    <option value="Ended">Ended</option>
+                    <option value="Canceled">Canceled</option>
+                    <option value="In Production">In Production</option>
+                    <option value="Pilot">Pilot</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Images -->
+            <div class="form-section">
+              <h3 class="form-section-title">Images (optional)</h3>
+              <p class="form-hint">Upload cover, backdrop, and/or logo images. Saving works without any images.</p>
+              <div class="image-upload-grid">
+                <!-- Cover -->
+                <div class="image-upload-card">
+                  <label class="image-upload-label">
+                    <div class="image-preview" id="am-cover-preview">
+                      <span class="image-placeholder-icon">
+                        <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+                      </span>
+                      <span class="image-placeholder-text">Cover Image</span>
+                    </div>
+                    <input type="file" id="am-cover" class="image-file-input" accept="image/*" data-preview="am-cover-preview">
+                  </label>
+                  <span class="image-upload-name" id="am-cover-name">No file selected</span>
+                  <button type="button" class="image-clear-btn" data-target="am-cover" data-preview="am-cover-preview">✕ Clear</button>
+                </div>
+                <!-- Backdrop -->
+                <div class="image-upload-card">
+                  <label class="image-upload-label">
+                    <div class="image-preview" id="am-backdrop-preview">
+                      <span class="image-placeholder-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM8 15c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/></svg>
+                      </span>
+                      <span class="image-placeholder-text">Backdrop Image</span>
+                    </div>
+                    <input type="file" id="am-backdrop" class="image-file-input" accept="image/*" data-preview="am-backdrop-preview">
+                  </label>
+                  <span class="image-upload-name" id="am-backdrop-name">No file selected</span>
+                  <button type="button" class="image-clear-btn" data-target="am-backdrop" data-preview="am-backdrop-preview">✕ Clear</button>
+                </div>
+                <!-- Logo -->
+                <div class="image-upload-card">
+                  <label class="image-upload-label">
+                    <div class="image-preview" id="am-logo-preview">
+                      <span class="image-placeholder-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+                      </span>
+                      <span class="image-placeholder-text">Logo Image</span>
+                    </div>
+                    <input type="file" id="am-logo" class="image-file-input" accept="image/*" data-preview="am-logo-preview">
+                  </label>
+                  <span class="image-upload-name" id="am-logo-name">No file selected</span>
+                  <button type="button" class="image-clear-btn" data-target="am-logo" data-preview="am-logo-preview">✕ Clear</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Details -->
+            <div class="form-section">
+              <h3 class="form-section-title">Additional Details</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="am-director">Director</label>
+                  <input type="text" id="am-director" class="form-input" placeholder="e.g., Lana Wachowski">
+                </div>
+                <div class="form-group">
+                  <label for="am-runtime">Runtime (minutes)</label>
+                  <input type="number" id="am-runtime" class="form-input" placeholder="136" min="1">
+                </div>
+                <div class="form-group">
+                  <label for="am-language">Language</label>
+                  <input type="text" id="am-language" class="form-input" placeholder="e.g., English">
+                </div>
+                <div class="form-group">
+                  <label for="am-country">Country</label>
+                  <input type="text" id="am-country" class="form-input" placeholder="e.g., USA">
+                </div>
+                <div class="form-group">
+                  <label for="am-actors">Cast (comma separated)</label>
+                  <input type="text" id="am-actors" class="form-input" placeholder="e.g., Keanu Reeves, Laurence Fishburne">
+                </div>
+                <div class="form-group">
+                  <label for="am-trailer">YouTube Trailer ID</label>
+                  <input type="text" id="am-trailer" class="form-input" placeholder="e.g., vKQi3bBA1y0">
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-actions">
+              <button type="submit" class="add-media-submit-btn">💾 Save to Library</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Browse Page -->
+      <section id="page-browse" class="page">
+        <div class="browse-page-shell">
+        <div class="browse-page-hero">
+          <div>
+            <div class="browse-page-kicker">Usenet Discovery</div>
+            <h2 class="browse-page-title">Browse Releases</h2>
+            <p class="browse-page-subtitle">Search across your indexed releases, filter by category, and move from raw release data to polished details in one flow.</p>
+          </div>
+        </div>
+
+        <!-- Category Pill Buttons -->
+        <div class="browse-categories" id="browse-categories"></div>
+
+        <div class="browse-controls">
+          <div class="browse-search">
+            <input type="text" placeholder="Search releases..." id="browse-search-input">
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="browse-pagination" id="browse-pagination"></div>
+
+        <div class="browse-results" id="browse-results">
+          <div class="browse-results-header">
+            <span id="browse-results-count">Loading...</span>
+          </div>
+          <div id="browse-batch-bar" class="tv-batch-bar" style="display:none;">
+            <label class="tv-batch-select-all">
+              <input type="checkbox" id="browse-select-all"> Select All
+            </label>
+            <button class="btn-small btn-download-selected" id="browse-download-selected" disabled>⬇️ Download Selected</button>
+            <button class="btn-small btn-download-selected" id="browse-send-selected" disabled>↗ Send to SABnzbd</button>
+            <button class="btn-small btn-download-selected" id="browse-queue-refresh-selected" disabled>↻ Queue Refresh</button>
+            <button class="btn-small btn-download-selected" id="browse-batch-edit-selected" disabled>✎ Batch Edit</button>
+            <button class="btn-small btn-download-selected" id="browse-delete-selected" disabled>🗑 Delete Selected</button>
+            <span class="tv-batch-count" id="browse-batch-count">0 selected</span>
+          </div>
+          <div id="browse-table-container">
+            <table class="tv-releases-table" id="browse-releases-table">
+              <thead>
+                <tr>
+                  <th class="tv-col-select"><input type="checkbox" id="browse-master-select-all"></th>
+                  <th class="tv-col-name">Release Name</th>
+                  <th class="tv-col-quality">Quality</th>
+                  <th class="tv-col-video">Video</th>
+                  <th class="tv-col-audio">Audio</th>
+                  <th class="tv-col-source">Source</th>
+                  <th class="tv-col-category">Category</th>
+                  <th class="tv-col-group">Group</th>
+                  <th class="tv-col-posted">Posted</th>
+                  <th class="tv-col-size">Size</th>
+                  <th class="tv-col-actions"></th>
+                </tr>
+              </thead>
+              <tbody id="browse-releases-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <!-- Settings Page -->
+      <section id="page-settings" class="page">
+        <div class="settings-page-shell">
+        <div class="settings-page-hero">
+          <div>
+            <div class="settings-page-kicker">Control Suite</div>
+            <h2 class="settings-page-title">Settings</h2>
+            <p class="settings-page-subtitle">Configure your servers, metadata services, and interface preferences from one refined control room.</p>
+          </div>
+        </div>
+        <div class="settings-content">
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+              NNTP Setup <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start;">
+                <div style="padding-right:18px;border-right:1px solid var(--border-color);">
+                  <h4 style="margin:0 0 12px;font-size:14px;color:var(--accent-color);">Download NNTP Setup</h4>
+                  <div class="form-group">
+                    <label for="nntp-server">Server</label>
+                    <input type="text" id="nntp-server" placeholder="news.example.com">
+                  </div>
+                  <div class="form-group">
+                    <label for="nntp-port">Port</label>
+                    <input type="number" id="nntp-port" value="563">
+                  </div>
+                  <div class="form-group">
+                    <label for="nntp-username">Username</label>
+                    <input type="text" id="nntp-username">
+                  </div>
+                  <div class="form-group">
+                    <label for="nntp-password">Password</label>
+                    <input type="password" id="nntp-password">
+                  </div>
+                  <div class="form-group">
+                    <label for="nntp-connections">Connections</label>
+                    <input type="number" id="nntp-connections" value="5" min="1" max="50">
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" id="nntp-ssl" checked>
+                      Use SSL
+                    </label>
+                  </div>
+                </div>
+
+                <div style="padding-left:18px;">
+                  <h4 style="margin:0 0 12px;font-size:14px;color:var(--accent-color);">Upload NNTP Setup</h4>
+                  <div class="form-group">
+                    <label for="upload-nntp-server">Server</label>
+                    <input type="text" id="upload-nntp-server" placeholder="post.example.com">
+                    <small class="form-hint">Separate NNTP server used for posting content back to Usenet (e.g., post.eweka.nl).</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="upload-nntp-port">Port</label>
+                    <input type="number" id="upload-nntp-port" value="563">
+                  </div>
+                  <div class="form-group">
+                    <label for="upload-nntp-username">Username</label>
+                    <input type="text" id="upload-nntp-username">
+                    <small class="form-hint">Credentials can differ from download NNTP if your provider requires separate posting access.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="upload-nntp-password">Password</label>
+                    <input type="password" id="upload-nntp-password">
+                  </div>
+                  <div class="form-group">
+                    <label for="upload-nntp-connections">Connections</label>
+                    <input type="number" id="upload-nntp-connections" value="5" min="1" max="50">
+                    <small class="form-hint">Parallel connections for uploading multipart posts.</small>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" id="upload-nntp-ssl" checked>
+                      Use SSL
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" id="upload-nntp-same-as-download">
+                      Same credentials as Download NNTP
+                    </label>
+                    <small class="form-hint">When checked, uses the download NNTP settings instead of the fields above.</small>
+                  </div>
+                  <div class="form-group" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+                    <label for="upload-article-size">Article Size (bytes)</label>
+                    <input type="number" id="upload-article-size" class="form-input" value="716800" min="100000" max="2000000" step="1000">
+                    <small class="form-hint">Maximum bytes per Usenet article. 716800 is a safe default. Larger = faster upload but may fail on strict servers.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="upload-retry-count">Retry Count</label>
+                    <input type="number" id="upload-retry-count" class="form-input" value="10" min="0" max="50">
+                    <small class="form-hint">Number of retries per article if posting fails. Set to 0 to disable retries.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="upload-thread-count">Upload Threads</label>
+                    <input type="number" id="upload-thread-count" class="form-input" value="8" min="1" max="32">
+                    <small class="form-hint">Parallel upload threads. More = faster, but may trigger server rate limiting. Start with 4-8.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+              Download Clients <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body download-clients-body">
+              <div class="form-group full-width">
+                <label for="downloader-preferred">Preferred Downloader</label>
+                <select id="downloader-preferred">
+                  <option value="sabnzbd">SABnzbd</option>
+                  <option value="nzbget">NZBGet</option>
+                </select>
+              </div>
+
+              <div id="sabnzbd-settings-panel" class="downloader-settings-grid">
+                <div class="form-group">
+                  <label for="sabnzbd-host">SABnzbd Host</label>
+                  <input type="text" id="sabnzbd-host" placeholder="localhost">
+                  <small class="form-hint">You can enter just the host name or paste a full SABnzbd URL such as <code>http://localhost:8080/sabnzbd</code>.</small>
+                </div>
+                <div class="form-group">
+                  <label for="sabnzbd-port">SABnzbd Port</label>
+                  <input type="number" id="sabnzbd-port" value="8080">
+                </div>
+                <div class="form-group">
+                  <label for="sabnzbd-base-path">SABnzbd Base Path</label>
+                  <input type="text" id="sabnzbd-base-path" placeholder="/sabnzbd">
+                </div>
+                <div class="form-group full-width">
+                  <label for="sabnzbd-nzb-key">SABnzbd NZB Key</label>
+                  <input type="password" id="sabnzbd-nzb-key" placeholder="Preferred for send-only access">
+                </div>
+                <div class="form-group full-width">
+                  <label for="sabnzbd-full-api-key">SABnzbd Full API Key</label>
+                  <input type="password" id="sabnzbd-full-api-key" placeholder="Optional, needed for queue/status checks">
+                </div>
+                <div class="form-group">
+                  <label for="sabnzbd-username">SABnzbd Username</label>
+                  <input type="text" id="sabnzbd-username" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                  <label for="sabnzbd-password">SABnzbd Password</label>
+                  <input type="password" id="sabnzbd-password" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                  <label for="sabnzbd-category">SABnzbd Category</label>
+                  <input type="text" id="sabnzbd-category" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                  <label for="sabnzbd-priority">SABnzbd Priority</label>
+                  <input type="number" id="sabnzbd-priority" value="0" min="-2" max="2">
+                </div>
+                <div class="form-group full-width checkbox-row">
+                  <label>
+                    <input type="checkbox" id="sabnzbd-ssl">
+                    Use SSL for SABnzbd
+                  </label>
+                </div>
+                <div class="form-group full-width downloader-actions-row">
+                  <button type="button" class="settings-action-btn" id="test-sabnzbd-btn">
+                    Test SABnzbd Connection
+                  </button>
+                </div>
+                <div class="form-group full-width sabnzbd-diagnostics-card" id="sabnzbd-diagnostics-card">
+                  <div class="sabnzbd-diagnostics-header">
+                    <div>
+                      <div class="sabnzbd-diagnostics-label">SABnzbd Diagnostics</div>
+                      <div class="sabnzbd-diagnostics-subtitle">Live endpoint resolution and key selection used by NZBarr.</div>
+                    </div>
+                    <button type="button" class="settings-action-btn secondary" id="copy-sabnzbd-diagnostics-btn">Copy Summary</button>
+                  </div>
+                  <div class="sabnzbd-diagnostics-grid">
+                    <div class="sabnzbd-diagnostic-item">
+                      <span class="sabnzbd-diagnostic-name">Resolved endpoint</span>
+                      <span class="sabnzbd-diagnostic-value" id="sabnzbd-diagnostic-endpoint">-</span>
+                    </div>
+                    <div class="sabnzbd-diagnostic-item">
+                      <span class="sabnzbd-diagnostic-name">Key source</span>
+                      <span class="sabnzbd-diagnostic-value" id="sabnzbd-diagnostic-key-source">-</span>
+                    </div>
+                    <div class="sabnzbd-diagnostic-item">
+                      <span class="sabnzbd-diagnostic-name">Auth mode</span>
+                      <span class="sabnzbd-diagnostic-value" id="sabnzbd-diagnostic-auth-mode">-</span>
+                    </div>
+                    <div class="sabnzbd-diagnostic-item">
+                      <span class="sabnzbd-diagnostic-name">API candidates</span>
+                      <span class="sabnzbd-diagnostic-value sabnzbd-diagnostic-mono" id="sabnzbd-diagnostic-api-bases">-</span>
+                    </div>
+                    <div class="sabnzbd-diagnostic-item">
+                      <span class="sabnzbd-diagnostic-name">Last test</span>
+                      <span class="sabnzbd-diagnostic-value" id="sabnzbd-diagnostic-last-test">No test run yet</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group full-width" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+                  <label for="sabnzbd-completed-path">Completed Downloads Path <span style="color: var(--accent-color);">*</span></label>
+                  <div style="display:flex;gap:8px;">
+                    <input type="text" id="sabnzbd-completed-path" class="form-input" style="flex:1;" placeholder="/Volumes/SABnzbd/Downloads/complete">
+                    <button type="button" class="link-browse-btn" id="sabnzbd-completed-path-browse">Browse</button>
+                  </div>
+                  <small class="form-hint">Network-mounted path to SABnzbd's completed downloads folder. Must be accessible from this machine (e.g., SMB mount at /Volumes/...).</small>
+                </div>
+              </div>
+
+              <div id="nzbget-settings-panel" class="hidden downloader-settings-grid">
+                <div class="form-group">
+                  <label for="nzbget-host">NZBGet Host</label>
+                  <input type="text" id="nzbget-host" placeholder="localhost">
+                </div>
+                <div class="form-group">
+                  <label for="nzbget-port">NZBGet Port</label>
+                  <input type="number" id="nzbget-port" value="6789">
+                </div>
+                <div class="form-group">
+                  <label for="nzbget-username">NZBGet Username</label>
+                  <input type="text" id="nzbget-username">
+                </div>
+                <div class="form-group">
+                  <label for="nzbget-password">NZBGet Password</label>
+                  <input type="password" id="nzbget-password">
+                </div>
+                <div class="form-group">
+                  <label for="nzbget-category">NZBGet Category</label>
+                  <input type="text" id="nzbget-category" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                  <label for="nzbget-priority">NZBGet Priority</label>
+                  <input type="number" id="nzbget-priority" value="0" min="-100" max="100">
+                </div>
+                <div class="form-group full-width checkbox-row">
+                  <label>
+                    <input type="checkbox" id="nzbget-ssl">
+                    Use SSL for NZBGet
+                  </label>
+                </div>
+                <div class="form-group full-width downloader-actions-row">
+                  <button type="button" class="settings-action-btn" id="test-nzbget-btn">
+                    Test NZBGet Connection
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group full-width">
+                <button type="button" class="settings-action-btn" id="save-downloader-settings-btn">
+                  Save Downloader Settings
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+              Refresh Category Setup <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group full-width">
+                <label for="refresh-sabnzbd-category">SABnzbd Category for Refresh Jobs</label>
+                <input type="text" id="refresh-sabnzbd-category" class="form-input" value="nzbarr-refresh" placeholder="nzbarr-refresh">
+                <small class="form-hint">NZBarr uses this category when sending refresh NZBs to SABnzbd. SABnzbd routes it to a specific folder.</small>
+              </div>
+              <div class="form-group full-width">
+                <label for="refresh-completed-path">Completed Refresh Folder Path</label>
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="refresh-completed-path" class="form-input" style="flex:1;" placeholder="/Volumes/SABnzbd/Downloads/complete/nzbarr-refresh">
+                  <button type="button" class="link-browse-btn" id="refresh-completed-path-browse">Browse</button>
+                </div>
+                <small class="form-hint">Path to the SABnzbd category folder for refresh jobs. Must be accessible on this machine (e.g., SMB mount).</small>
+              </div>
+              <div class="form-group">
+                <label for="refresh-cleanup-action">After Successful Refresh</label>
+                <select id="refresh-cleanup-action" class="form-input">
+                  <option value="delete">Delete downloaded refresh file</option>
+                  <option value="move">Move downloaded refresh file</option>
+                </select>
+                <small class="form-hint">Choose what NZBarr does with the completed refresh download after the new NZB has been uploaded.</small>
+              </div>
+              <div class="form-group full-width" id="refresh-cleanup-move-group">
+                <label for="refresh-cleanup-move-path">Move Destination</label>
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="refresh-cleanup-move-path" class="form-input" style="flex:1;" placeholder="/Volumes/Media/Refreshed">
+                  <button type="button" class="link-browse-btn" id="refresh-cleanup-move-path-browse">Browse</button>
+                </div>
+                <small class="form-hint">When move is selected, NZBarr moves the completed refresh download here instead of deleting it.</small>
+              </div>
+              <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-top: 8px;">
+                <strong style="color: var(--accent-color);">One-time SABnzbd Setup:</strong>
+                <ol style="margin: 8px 0 0 16px; font-size: 13px; line-height: 1.6;">
+                  <li>Open SABnzbd Settings → Categories</li>
+                  <li>Add a new category named <code>nzbarr-refresh</code></li>
+                  <li>Set its folder to <code>complete/nzbarr-refresh</code> (or your preferred path)</li>
+                  <li>Save in SABnzbd</li>
+                  <li>Set the "Completed Refresh Folder Path" above to that folder on your machine</li>
+                </ol>
+                <small>This works exactly like Sonarr/Radarr category routing — one-time setup.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              API Keys <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group">
+                <label for="tmdb-api-key">TMDB API Key</label>
+                <input type="password" id="tmdb-api-key" placeholder="Your TMDB API key">
+              </div>
+              <div class="form-group">
+                <label for="fanart-api-key">Fanart API Key</label>
+                <input type="password" id="fanart-api-key" placeholder="Your Fanart API key">
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18L19 6.3V11c0 4.52-2.98 8.77-7 9.93C7.98 19.77 5 15.52 5 11V6.3l7-3.12zM11 7h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
+              Easynews Streams <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group">
+                <label for="easynews-username">Easynews Username</label>
+                <input type="text" id="easynews-username" autocomplete="username" placeholder="Your Easynews username">
+                <small class="form-hint">NZBarr adds this to imported members.easynews.com stream URLs in the main process.</small>
+              </div>
+              <div class="form-group">
+                <label for="easynews-password">Easynews Password</label>
+                <input type="password" id="easynews-password" autocomplete="current-password" placeholder="Your Easynews password">
+                <small class="form-hint">Stream URLs are shown masked in the UI and credentials are not logged.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+              Downloads <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group">
+                <label for="download-path">Download Location</label>
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="download-path" class="form-input" style="flex:1;" placeholder="/Users/username/Downloads">
+                  <button type="button" class="link-browse-btn" id="download-path-browse">
+                    <svg class="inline-icon" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+                    Browse
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="max-concurrent">Max Concurrent Downloads</label>
+                <input type="number" id="max-concurrent" value="3" min="1" max="10">
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M21 6h-4V4c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2H3c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2l.01-14c-.01-1.1-.91-2-2.01-2zM9 4h6v2H9V4zm12 15H3V8h18v11z"/></svg>
+              Player <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group">
+                <label for="external-player">External Player (optional)</label>
+                <select id="external-player">
+                  <option value="">None (use built-in)</option>
+                  <option value="vlc">VLC</option>
+                  <option value="iina">IINA</option>
+                  <option value="mpv">MPV</option>
+                  <option value="custom">Custom...</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-split-row">
+            <div class="settings-section">
+              <h3 class="settings-section-header">
+                <svg class="inline-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                Release Groups <span class="settings-toggle">▼</span>
+              </h3>
+              <div class="settings-section-body">
+                <p class="settings-hint">Add known release group names (one per line). During import, these will be auto-detected in NZB filenames and filled in the Group column.</p>
+                <textarea id="release-groups" class="settings-textarea" placeholder="FLUX&#10;Pahe-in&#10;Pahe&#10;NTb&#10;AMCON"></textarea>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3 class="settings-section-header">
+                <svg class="inline-icon" viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg>
+                Import & Link <span class="settings-toggle">▼</span>
+              </h3>
+              <div class="settings-section-body">
+                <p class="settings-hint">Drag and drop NZB files anywhere to import them automatically. If a TV Show or Movie is not found at ThemovieDB, you can add it manually. Then you can link your nzb files to that TV Show/Movie. 
+                  Or use the Link NZBs to Media button to manually associate NZBs with existing library entries.</p>
+                <div class="settings-actions">
+                  <button class="settings-action-btn" id="settings-add-media-btn">
+                    <svg class="inline-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Add Media to Library
+                  </button>
+                  <button class="settings-action-btn" id="settings-link-nzbs-btn">
+                    <svg class="inline-icon" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+                    Link NZBs to Media
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M3 5h18v4H3V5zm2 6h14v2H5v-2zm-2 4h18v4H3v-4zm2 1v2h14v-2H5z"/></svg>
+              Smart Preparation <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body smart-prep-body">
+              <p class="settings-hint">Prepare movie and TV NZB filenames inside NZBarr before import. This native pass resolves TMDB and IMDb IDs, normalizes naming, skips unmatched files, and can optionally import the prepared releases immediately.</p>
+              <div class="form-group">
+                <label for="pipeline-movies-folder">Movies Preparation Folder</label>
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="pipeline-movies-folder" class="form-input" style="flex:1;" placeholder="/Users/username/Downloads/NZB Movies">
+                  <button type="button" class="link-browse-btn" id="pipeline-movies-folder-browse">Browse</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pipeline-tv-folder">TV Preparation Folder</label>
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="pipeline-tv-folder" class="form-input" style="flex:1;" placeholder="/Users/username/Downloads/NZB TV">
+                  <button type="button" class="link-browse-btn" id="pipeline-tv-folder-browse">Browse</button>
+                </div>
+              </div>
+              <div class="pipeline-run-card">
+                <div class="pipeline-run-status" id="pipeline-run-status">Idle</div>
+                <textarea id="pipeline-run-log" class="settings-textarea pipeline-run-log" readonly placeholder="Preparation activity will appear here."></textarea>
+              </div>
+              <div class="smart-prep-bottom-row">
+                <div class="form-group smart-prep-storage">
+                  <label for="nzb-storage-path">NZB Storage Directory</label>
+                  <input type="text" id="nzb-storage-path" class="form-input" placeholder="Uses Application Support when empty">
+                  <small class="form-hint">Optional override for where NZBarr stores NZB files. Leave blank to use the default Application Support location.</small>
+                </div>
+                <div class="settings-actions smart-prep-actions">
+                  <button class="settings-action-btn" id="pipeline-prepare-btn" type="button">Prepare Folders</button>
+                  <button class="settings-action-btn" id="pipeline-prepare-import-btn" type="button">Prepare + Import</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section" style="display:none;">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 9.74-7 10-3.5-.26-7-5-7-10V6l7-4zm0 2.18L7 7.03v4.95c0 3.87 2.58 7.57 5 7.98 2.42-.41 5-4.11 5-7.98V7.03l-5-2.85z"/></svg>
+              Owned Media Archive <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group">
+                <label for="archive-work-path">Working Folder</label>
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="archive-work-path" class="form-input" style="flex:1;" placeholder="/Users/username/NZBarrArchiveWork">
+                  <button type="button" class="link-browse-btn" id="archive-work-path-browse">Browse</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="archive-keep-temp-files">
+                  Keep temporary refresh files for inspection
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="archive-delete-old-revision-after-success">
+                  Delete older revision after a successful future archive replacement
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section auto-refresh-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+              NZB Auto Refresh <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body auto-refresh-section-body">
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="auto-refresh-enabled">
+                  Enable automatic NZB refresh in background
+                </label>
+                <small class="form-hint">Periodically re-downloads, re-analyzes, and re-posts aged NZBs to keep them alive on Usenet.</small>
+              </div>
+              <div class="form-group">
+                <label for="auto-refresh-age-threshold">Minimum NZB Age Before Refresh (years)</label>
+                <input type="number" id="auto-refresh-age-threshold" class="form-input" min="1" max="50" value="1" placeholder="1">
+                <small class="form-hint">NZBs older than this will be eligible for refresh. Set to 1 for testing, 5 for production.</small>
+              </div>
+              <div class="form-group">
+                <label for="reanalyze-download-mb">Re-analyze Download Cap (MB)</label>
+                <input type="number" id="reanalyze-download-mb" class="form-input" min="1" max="1024" step="1" value="50" placeholder="50">
+                <small class="form-hint">Limits how much data the Release Edit Re-analyze button downloads before running MediaInfo. Higher values can improve results but use more bandwidth.</small>
+              </div>
+              <div class="form-group">
+                <label for="auto-refresh-interval">Check Interval</label>
+                <select id="auto-refresh-interval">
+                  <option value="daily">Daily</option>
+                  <option value="weekly" selected>Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+                <small class="form-hint">How often the app checks for NZBs that need refreshing.</small>
+              </div>
+              <div class="form-group">
+                <label for="auto-refresh-mode">Refresh Mode</label>
+                <select id="auto-refresh-mode">
+                  <option value="replace">Replace existing NZB (overwrite)</option>
+                  <option value="keep_both">Keep both (new NZB alongside old, for testing)</option>
+                </select>
+                <small class="form-hint">"Replace" overwrites the old NZB. "Keep both" saves the new one with a "_refreshed" suffix.</small>
+              </div>
+              <div class="form-group">
+                <label for="auto-refresh-newsgroup">Newsgroup for Re-upload</label>
+                <input type="text" id="auto-refresh-newsgroup" class="form-input" placeholder="alt.binaries.multimedia, alt.binaries.hdtv">
+                <small class="form-hint">Enter up to 3 groups, separated by commas or new lines. Refreshed posts will be sent to all listed groups.</small>
+              </div>
+              <div class="form-group">
+                <label for="auto-refresh-poster">Poster Name/Email</label>
+                <input type="text" id="auto-refresh-poster" class="form-input" placeholder="NZBarr Refresh &lt;user@example.com&gt;">
+                <small class="form-hint">Display name or email shown in the "From" field of posted articles.</small>
+              </div>
+              <div class="form-group">
+                <label for="ngpost-path">ngPost Executable Path</label>
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="ngpost-path" class="form-input" style="flex:1;" placeholder="/Applications/ngPost.app/Contents/MacOS/ngPost">
+                  <button type="button" class="link-browse-btn" id="ngpost-path-browse">Browse</button>
+                </div>
+                <small class="form-hint">Leave blank to auto-detect ngPost from common install locations or your PATH.</small>
+              </div>
+              <div class="form-group">
+                <label for="archive-password">Archive Password</label>
+                <input type="password" id="archive-password" placeholder="Used for Auto Refresh uploads and refreshed archive revisions">
+                <small class="form-hint">Used when NZBarr creates refreshed upload archives during the Auto Refresh workflow.</small>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="auto-refresh-notify">
+                  Show notification when a refresh completes
+                </label>
+              </div>
+              <div class="refresh-queue-panel">
+                <div class="refresh-queue-header">
+                  <div>
+                    <strong>Refresh Queue</strong>
+                    <small class="form-hint" id="refresh-queue-summary">Loading queue...</small>
+                  </div>
+                  <button type="button" class="settings-action-btn" id="refresh-queue-reload-btn">Reload</button>
+                </div>
+                <div class="refresh-queue-active" id="refresh-queue-active"></div>
+                <div class="refresh-queue-list" id="refresh-queue-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18 7 3.11V11c0 4.52-3.01 8.95-7 10-3.99-1.05-7-5.48-7-10V6.29l7-3.11zm-1 4.82v4h2V8h-2zm0 6v2h2v-2h-2z"/></svg>
+              License <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group">
+                <label for="license-server-url">License Server URL</label>
+                <input type="text" id="license-server-url" class="form-input" placeholder="https://your-test-server.example.com">
+                <small class="form-hint">Use your test server for now. If no validate path is included, NZBarr will use `/api/licenses/validate`.</small>
+              </div>
+              <div class="form-group">
+                <label for="license-key-input">License Key</label>
+                <input type="text" id="license-key-input" class="form-input" placeholder="NZBARR-XXXX-XXXX-XXXX">
+              </div>
+              <div class="settings-actions">
+                <button class="settings-action-btn" id="license-activate-btn">Activate License</button>
+                <button class="settings-action-btn" id="license-refresh-btn">Refresh License</button>
+                <button class="settings-action-btn" id="license-clear-btn">Clear License</button>
+              </div>
+              <div class="license-status-card" id="license-status-card">
+                <div class="license-status-pill" id="license-status-pill">Free</div>
+                <div class="license-status-line" id="license-status-line">No license active</div>
+                <div class="license-status-support" id="license-status-support"></div>
+                <div class="license-status-meta" id="license-status-meta"></div>
+                <div class="license-status-actions">
+                  <button class="settings-action-btn secondary" id="license-open-server-btn" type="button" hidden>Open License Server</button>
+                  <button class="settings-action-btn secondary" id="license-copy-support-btn" type="button">Copy Support Code</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-header">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 0 0-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 0 1 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="11.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/></svg>
+              UI Settings <span class="settings-toggle">▼</span>
+            </h3>
+            <div class="settings-section-body">
+              <div class="form-group">
+                <label for="ui-library-cover-size">Cover Size (Library)</label>
+                <select id="ui-library-cover-size">
+                  <option value="small">Small (120px)</option>
+                  <option value="medium" selected>Medium (185px)</option>
+                  <option value="large">Large (240px)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="ui-browse-items">Items per page (Browse)</label>
+                <input type="number" id="ui-browse-items" class="form-input" min="1" max="200" value="50" placeholder="1-80 or 100-200 (steps of 20)">
+                <small class="form-hint">Enter 1-80 for any number, or 100/120/140/160/180/200</small>
+              </div>
+              <div class="form-group">
+                <label for="ui-library-items">Items per page (Library)</label>
+                <input type="number" id="ui-library-items" class="form-input" min="1" max="200" value="50" placeholder="1-80 or 100-200 (steps of 20)">
+                <small class="form-hint">Enter 1-80 for any number, or 100/120/140/160/180/200</small>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="ui-show-welcome-message" checked>
+                  Display welcome message on Main Page
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="ui-show-hero-slider" checked>
+                  Display hero slider on Main Page
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="ui-show-featured-movies" checked>
+                  Display featured movies on Main Page
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="ui-show-featured-series" checked>
+                  Display featured series on Main Page
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="ui-show-grand-vault" checked>
+                  Display Grand Vault on Main Page
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="ui-show-at-a-glance" checked>
+                  Display At A Glance on Main Page
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="ui-show-freshly-polished" checked>
+                  Display Freshly Polished on Main Page
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-primary" id="save-settings">Save Settings</button>
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Release Detail Modal -->
+    <div id="release-detail" class="release-detail-overlay hidden">
+      <div class="release-detail-content">
+        <div class="release-detail-header">
+          <h2 id="release-detail-title"></h2>
+          <button class="close-release-detail" id="close-release-detail">✕</button>
+        </div>
+        <div class="release-detail-body">
+          <div class="release-specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Resolution</span>
+              <span class="spec-value" id="release-resolution">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Video Codec</span>
+              <span class="spec-value" id="release-video">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Audio Codec</span>
+              <span class="spec-value" id="release-audio">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Audio Channels</span>
+              <span class="spec-value" id="release-channels">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Source</span>
+              <span class="spec-value" id="release-source">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Container</span>
+              <span class="spec-value" id="release-format">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Bit Depth</span>
+              <span class="spec-value" id="release-bit-depth">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">HDR Format</span>
+              <span class="spec-value" id="release-hdr-format">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Frame Rate</span>
+              <span class="spec-value" id="release-frame-rate">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Audio Bitrate</span>
+              <span class="spec-value" id="release-audio-bitrate">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Audio Sample Rate</span>
+              <span class="spec-value" id="release-audio-sample-rate">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Aspect Ratio</span>
+              <span class="spec-value" id="release-aspect-ratio">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Video Profile</span>
+              <span class="spec-value" id="release-video-profile">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Scan Type</span>
+              <span class="spec-value" id="release-scan-type">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Chroma</span>
+              <span class="spec-value" id="release-chroma">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Color Primaries</span>
+              <span class="spec-value" id="release-color-primaries">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Overall Bitrate</span>
+              <span class="spec-value" id="release-overall-bitrate">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Video Bitrate</span>
+              <span class="spec-value" id="release-video-bitrate">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">File Size</span>
+              <span class="spec-value" id="release-size">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Parts</span>
+              <span class="spec-value" id="release-parts">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Password</span>
+              <span class="spec-value" id="release-password">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Subtitles</span>
+              <span class="spec-value" id="release-subtitles">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Release Group</span>
+              <span class="spec-value" id="release-group">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Post Date</span>
+              <span class="spec-value" id="release-postdate">-</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Added</span>
+              <span class="spec-value" id="release-added">-</span>
+            </div>
+          </div>
+
+          <div class="release-detail-section hidden" id="mediainfo-section">
+            <h3>MediaInfo</h3>
+            <pre class="mediainfo-text" id="release-mediainfo"></pre>
+          </div>
+          
+          <div class="release-detail-section">
+            <h3>Search Name</h3>
+            <div class="release-name-block" id="release-search-name"></div>
+          </div>
+
+          <div class="release-detail-section">
+            <h3>Release Group</h3>
+            <div class="release-name-block" id="release-group-detail"></div>
+          </div>
+
+          <div class="release-detail-section">
+            <h3>Refresh Status</h3>
+            <div class="release-name-block" id="release-refresh-status">Refresh status: Idle</div>
+          </div>
+
+          <div class="release-detail-section hidden" id="nfo-section">
+            <h3>NFO Information</h3>
+            <pre class="nfo-text" id="release-nfo"></pre>
+          </div>
+
+          <div class="release-detail-actions">
+            <button class="btn-primary action-btn" id="release-download-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+              Download
+            </button>
+            <button class="btn-secondary action-btn" id="release-send-sab-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M3 5h18v4H3zm0 5h18v4H3zm0 5h18v4H3z"/></svg>
+              Send To SABnzbd
+            </button>
+            <button class="btn-secondary action-btn" id="release-send-nzbget-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 8v8l7-4-7-4z"/></svg>
+              Send To NZBGet
+            </button>
+            <button class="btn-secondary action-btn" id="release-reanalyze-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+              Re-analyze
+            </button>
+            <button class="btn-secondary action-btn" id="release-refresh-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5 0 .69-.14 1.35-.39 1.95l1.52 1.52A6.96 6.96 0 0 0 19 13c0-3.87-3.13-7-7-7zm-5.61.05A6.96 6.96 0 0 0 5 11c0 3.87 3.13 7 7 7v3l4-4-4-4v3c-2.76 0-5-2.24-5-5 0-.69.14-1.35.39-1.95L5.89 7.57A6.78 6.78 0 0 0 6.39 6.05z"/></svg>
+              Refresh Release
+            </button>
+            <button class="btn-secondary action-btn" id="release-queue-refresh-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M13 3a9 9 0 1 1-8.95 8H2l3-3 3 3H5.07A7 7 0 1 0 13 5V3zm-1 4h2v5l4 2-1 1.73-5-2.98V7z"/></svg>
+              Queue Refresh
+            </button>
+            <button class="btn-secondary action-btn" id="release-edit-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+              Edit Release
+            </button>
+            <button class="btn-danger action-btn" id="release-delete-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+              Delete Release
+            </button>
+            <button class="btn-danger action-btn" id="music-info-delete-btn" style="display:none;">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+              Delete Music Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Release Modal -->
+    <div id="edit-release-overlay" class="release-detail-overlay hidden">
+      <div class="release-detail-content">
+        <div class="release-detail-header">
+          <h2>Edit Release</h2>
+          <button class="close-release-detail" id="close-edit-release">✕</button>
+        </div>
+        <div class="release-detail-body">
+          <div class="edit-form">
+            <div class="edit-form-row" style="grid-column: 1 / -1;">
+              <label>Release Name</label>
+              <input type="text" id="edit-search-name" placeholder="Release search name" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>IMDB ID</label>
+              <input type="text" id="edit-imdb-id" placeholder="ttXXXXXXX" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>TMDB ID</label>
+              <input type="number" id="edit-tmdb-id" placeholder="12345" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Media Type</label>
+              <select id="edit-media-type" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="movie">Movie</option>
+                <option value="tv">TV Show</option>
+                <option value="music">Music</option>
+                <option value="book">Book</option>
+                <option value="console">Console</option>
+                <option value="xxx">XXX</option>
+              </select>
+            </div>
+            <div class="edit-form-row" id="edit-linked-media-row" style="grid-column: 1 / -1;">
+              <label>Linked Media</label>
+              <div id="edit-linked-media-current" class="edit-linked-media-current"></div>
+              <input type="text" id="edit-linked-media-search" placeholder="Type a movie or TV title to search" class="edit-input" autocomplete="off">
+              <div class="edit-media-link-hint">Select a result to fill TMDB / IMDB fields, then save the release.</div>
+              <div id="edit-linked-media-selected" class="edit-media-link-selected"></div>
+              <div id="edit-linked-media-results" class="tmdb-search-results edit-media-link-results"></div>
+            </div>
+            <div class="edit-form-row">
+              <label>Category</label>
+              <select id="edit-category-id" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="1010">Movies HD</option>
+                <option value="1020">Movies SD</option>
+                <option value="1030">Movies 4K</option>
+                <option value="1040">Movies 3D</option>
+                <option value="2010">TV HD</option>
+                <option value="2020">TV SD</option>
+                <option value="2030">TV 4K</option>
+                <option value="2040">TV Documentaries</option>
+                <option value="3010">Music MP3</option>
+                <option value="3020">Music FLAC</option>
+                <option value="3030">Music Videos</option>
+                <option value="3040">Audiobooks</option>
+                <option value="4010">Games</option>
+                <option value="4020">Software</option>
+                <option value="5010">Ebooks</option>
+                <option value="5020">Magazines</option>
+                <option value="5030">Comics</option>
+                <option value="6010">XXX</option>
+              </select>
+            </div>
+            <div class="edit-form-row" id="edit-season-row">
+              <label>Season</label>
+              <input type="number" id="edit-season" placeholder="1" class="edit-input">
+            </div>
+            <div class="edit-form-row" id="edit-episode-row">
+              <label>Episode</label>
+              <input type="number" id="edit-episode" placeholder="1" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Resolution</label>
+              <select id="edit-resolution" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="2160P">2160p / 4K</option>
+                <option value="1080P">1080p</option>
+                <option value="720P">720p</option>
+                <option value="480P">480p</option>
+              </select>
+            </div>
+            <div class="edit-form-row">
+              <label>Video Codec</label>
+              <select id="edit-video-codec" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="H.265">H.265 / HEVC</option>
+                <option value="H.264">H.264 / AVC</option>
+                <option value="AV1">AV1</option>
+                <option value="VP9">VP9</option>
+              </select>
+            </div>
+            <div class="edit-form-row">
+              <label>Audio Codec</label>
+              <input type="text" id="edit-audio-codec" placeholder="DTS, AAC, etc." class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Audio Channels</label>
+              <select id="edit-audio-channels" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="7.1">7.1</option>
+                <option value="5.1">5.1</option>
+                <option value="2.0">2.0</option>
+                <option value="1.0">1.0</option>
+              </select>
+            </div>
+            <div class="edit-form-row">
+              <label>Source</label>
+              <select id="edit-source" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="BluRay">BluRay</option>
+                <option value="WEB-DL">WEB-DL</option>
+                <option value="HDTV">HDTV</option>
+                <option value="DVD">DVD</option>
+                <option value="CAM">CAM</option>
+              </select>
+            </div>
+            <div class="edit-form-row">
+              <label>Format</label>
+              <select id="edit-format" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="MKV">MKV</option>
+                <option value="MP4">MP4</option>
+                <option value="AVI">AVI</option>
+                <option value="M2TS">M2TS</option>
+              </select>
+            </div>
+            <div class="edit-form-row">
+              <label>Release Group</label>
+              <input type="text" id="edit-release-group" placeholder="e.g. FLUX, Pahe-in" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Subtitles</label>
+              <input type="text" id="edit-subtitles" placeholder="NL, EN, etc." class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Language</label>
+              <input type="text" id="edit-language" placeholder="e.g. NL, EN" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Password</label>
+              <input type="text" id="edit-password" placeholder="Leave blank for none" class="edit-input">
+            </div>
+            <div class="edit-form-row" style="grid-column: 1 / -1;">
+              <label>Raw MediaInfo</label>
+              <textarea id="edit-mediainfo-raw" rows="10" class="edit-input" placeholder="Paste or edit raw MediaInfo output here"></textarea>
+            </div>
+          </div>
+          <div class="release-detail-actions">
+            <button class="btn-primary action-btn" id="edit-release-save-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+              Save Changes
+            </button>
+            <button class="btn-secondary action-btn" id="edit-release-fetch-tmdb-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+              Fetch TMDB Data
+            </button>
+            <button class="btn-secondary action-btn" id="edit-release-cancel-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Playback Overlay -->
+    <div id="player-overlay" class="player-overlay hidden">
+      <div class="player-header">
+        <h3 id="player-title">Title</h3>
+        <button class="close-player" id="close-player" type="button" onclick="window.app && window.app.closePlayer()">✕</button>
+      </div>
+      <div class="player-content">
+        <video id="video-player" controls>
+          Your browser does not support video playback.
+        </video>
+        <iframe
+          id="trailer-player-frame"
+          class="player-trailer-frame hidden"
+          title="Trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Movie Details Page -->
+    <section id="page-movie-details" class="page movie-details-page hidden">
+      <button class="back-btn" id="back-from-details">← Back</button>
+      <div class="movie-details-content">
+        <div class="movie-backdrop" id="movie-backdrop"></div>
+        <img id="movie-logo" class="movie-logo" src="" alt="" style="display:none;">
+        <div class="movie-header-section">
+          <div class="movie-header-top">
+            <div class="movie-cover-shell">
+              <img id="movie-cover" class="movie-cover" src="" alt="">
+              <button class="edit-info-btn" id="edit-movie-info-btn" title="Edit Info">
+                Edit Info
+              </button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <div id="movie-detail-type" class="movie-detail-type"></div>
+            <h2 id="movie-title-text"></h2>
+            <div id="movie-status-line" class="movie-status-line"></div>
+            <div class="movie-meta" id="movie-meta"></div>
+            <div class="movie-info-panel">
+              <p class="movie-overview" id="movie-overview"></p>
+              <div class="actors-section" id="actors-section" style="display:none;">
+                <h3 class="actors-heading">Cast</h3>
+                <div class="actors-row" id="actors-row"></div>
+              </div>
+              <div id="movie-trailer" class="movie-trailer hidden">
+                <button id="trailer-link" class="hero-btn hero-btn-secondary" onclick="window.app.playTrailerFromDetails()">
+                  <svg class="inline-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  Trailer
+                </button>
+              </div>
+              <div id="movie-collection-section" class="movie-collection-section hidden">
+                <div class="movie-collection-header">
+                  <div>
+                    <h3>Part of Collection</h3>
+                    <p id="movie-collection-subtitle" class="movie-collection-subtitle"></p>
+                  </div>
+                  <button id="movie-open-collection-btn" class="hero-btn hero-btn-secondary">Open Collection</button>
+                </div>
+                <div id="movie-collection-card" class="movie-collection-card"></div>
+                <div id="movie-collection-owned" class="movie-collection-owned"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="movie-releases-header">
+          <div>
+            <h3 class="releases-heading">Available Releases</h3>
+            <p id="movie-releases-subtitle" class="movie-releases-subtitle"></p>
+          </div>
+        </div>
+        <div class="movie-easynews-discovery hidden" id="movie-easynews-discovery-section">
+          <div class="movie-releases-header">
+            <div>
+              <h3 class="releases-heading">Easynews Discovery</h3>
+              <p id="movie-easynews-discovery-subtitle" class="movie-releases-subtitle">Find 720p/1080p MP4 links for this movie.</p>
+            </div>
+            <button id="movie-easynews-search-btn" class="hero-btn hero-btn-secondary">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              Search Easynews
+            </button>
+          </div>
+          <div class="movie-easynews-results" id="movie-easynews-results"></div>
+        </div>
+        <div class="movie-stream-links hidden" id="movie-stream-links-section">
+          <div class="movie-releases-header">
+            <div>
+              <h3 class="releases-heading">Stream Links</h3>
+              <p id="movie-stream-links-subtitle" class="movie-releases-subtitle"></p>
+            </div>
+          </div>
+          <div class="movie-stream-links-list" id="movie-stream-links-list"></div>
+        </div>
+        <div class="releases-table" id="releases-table"></div>
+      </div>
+    </section>
+
+    <section id="page-collection-details" class="page collection-details-page hidden">
+      <button class="back-btn" id="back-from-collection-details">← Back</button>
+      <div class="collection-details-content">
+        <div class="collection-hero" id="collection-hero">
+          <div class="collection-hero-backdrop" id="collection-backdrop"></div>
+          <div class="collection-hero-shell">
+            <div class="collection-hero-media">
+              <img id="collection-poster" class="collection-poster" src="assets/images/placeholder-cover.svg" alt="">
+            </div>
+            <div class="collection-hero-info">
+              <div class="collection-detail-kicker">Grand Collection</div>
+              <div class="collection-logo-shell hidden" id="collection-logo-shell">
+                <img id="collection-logo" class="collection-logo" src="assets/images/placeholder-logo.svg" alt="">
+              </div>
+              <h2 id="collection-title"></h2>
+              <div id="collection-status-line" class="collection-status-line"></div>
+              <div id="collection-meta" class="collection-meta"></div>
+              <p id="collection-overview" class="collection-overview"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collection-section">
+          <div class="collection-section-header">
+            <div>
+              <h3>Owned Titles</h3>
+              <p id="collection-owned-subtitle" class="collection-section-subtitle"></p>
+            </div>
+          </div>
+          <div id="collection-owned-grid" class="actor-poster-grid"></div>
+        </div>
+
+        <div class="collection-section" id="collection-missing-section">
+          <div class="collection-section-header">
+            <div>
+              <h3>Missing Titles</h3>
+              <p id="collection-missing-subtitle" class="collection-section-subtitle"></p>
+            </div>
+          </div>
+          <div id="collection-missing-grid" class="collection-missing-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Actor Detail Page -->
+    <section id="page-actor-details" class="page actor-details-page hidden">
+      <button class="back-btn" id="back-from-actor">← Back</button>
+      <div class="actor-details-content">
+        <div class="actor-hero">
+          <div class="actor-hero-backdrop"></div>
+          <div class="actor-hero-shell">
+            <div class="actor-hero-media">
+              <img id="actor-profile-image" class="actor-hero-img" src="assets/images/placeholder-cover.svg" alt="">
+            </div>
+            <div class="actor-hero-info">
+              <div id="actor-detail-role" class="actor-detail-role"></div>
+              <h2 id="actor-detail-name"></h2>
+              <div id="actor-meta-facts" class="actor-facts"></div>
+              <p id="actor-biography"></p>
+            </div>
+          </div>
+        </div>
+        <div class="actor-releases-section">
+          <div class="actor-section-header">
+            <div>
+              <h3>Known For</h3>
+              <p id="actor-releases-subtitle" class="actor-section-subtitle"></p>
+            </div>
+          </div>
+          <div id="actor-releases-grid" class="actor-poster-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Edit Movie/TV Info Modal -->
+    <div id="edit-movie-info-overlay" class="release-detail-overlay hidden">
+      <div class="release-detail-content">
+        <div class="release-detail-header">
+          <h2 id="edit-movie-info-title">Edit Movie Info</h2>
+          <button class="close-release-detail" id="close-edit-movie-info">✕</button>
+        </div>
+        <div class="release-detail-body">
+          <div class="edit-form">
+            <div class="edit-form-row edit-form-row-full">
+              <label>Artwork</label>
+              <div class="edit-artwork-grid">
+                <div class="edit-cover-card">
+                  <div class="edit-cover-preview" id="edit-mi-cover-preview">
+                    <img src="assets/images/placeholder-cover.svg" alt="Current cover" id="edit-mi-cover-image">
+                  </div>
+                  <div class="edit-cover-actions">
+                    <div class="edit-cover-label">Cover</div>
+                    <div class="edit-cover-action-row">
+                      <button type="button" class="btn-secondary" id="edit-mi-upload-cover-btn">Upload</button>
+                      <button type="button" class="btn-secondary" id="edit-mi-fanart-cover-btn">Fanart.tv</button>
+                    </div>
+                    <input type="file" id="edit-mi-cover-file" accept="image/png,image/jpeg,image/webp" class="hidden">
+                  </div>
+                </div>
+                <div class="edit-cover-card">
+                  <div class="edit-cover-preview edit-backdrop-preview" id="edit-mi-backdrop-preview">
+                    <img src="assets/images/placeholder-backdrop.svg" alt="Current backdrop" id="edit-mi-backdrop-image">
+                  </div>
+                  <div class="edit-cover-actions">
+                    <div class="edit-cover-label">Backdrop</div>
+                    <div class="edit-cover-action-row">
+                      <button type="button" class="btn-secondary" id="edit-mi-upload-backdrop-btn">Upload</button>
+                      <button type="button" class="btn-secondary" id="edit-mi-fanart-backdrop-btn">Fanart.tv</button>
+                    </div>
+                    <input type="file" id="edit-mi-backdrop-file" accept="image/png,image/jpeg,image/webp" class="hidden">
+                  </div>
+                </div>
+                <div class="edit-cover-card">
+                  <div class="edit-cover-preview edit-logo-preview" id="edit-mi-logo-preview">
+                    <img src="assets/images/placeholder-logo.svg" alt="Current logo" id="edit-mi-logo-image">
+                  </div>
+                  <div class="edit-cover-actions">
+                    <div class="edit-cover-label">Logo</div>
+                    <div class="edit-cover-action-row">
+                      <button type="button" class="btn-secondary" id="edit-mi-upload-logo-btn">Upload</button>
+                      <button type="button" class="btn-secondary" id="edit-mi-fanart-logo-btn">Fanart.tv</button>
+                    </div>
+                    <input type="file" id="edit-mi-logo-file" accept="image/png,image/jpeg,image/webp" class="hidden">
+                  </div>
+                </div>
+              </div>
+              <small class="form-hint">Choose a JPG, PNG, or WEBP file to replace the current cached artwork instantly.</small>
+              <small class="form-hint fanart-feature-hint" id="edit-mi-fanart-hint">Fanart.tv artwork requires a Fanart API key in Settings.</small>
+            </div>
+            <div class="edit-form-row">
+              <label>IMDB ID</label>
+              <input type="text" id="edit-mi-imdb-id" placeholder="ttXXXXXXX" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <div class="edit-form-row-with-button">
+                <label>TMDB ID</label>
+                <input type="number" id="edit-mi-tmdb-id" placeholder="12345" class="edit-input">
+                <button type="button" id="edit-mi-search-tmdb-btn" class="search-link-btn" title="Search and link from TMDB">🔍 Search &amp; Link</button>
+              </div>
+            </div>
+            <div class="edit-form-row">
+              <label>Title</label>
+              <input type="text" id="edit-mi-title" placeholder="Movie/TV title" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Original Title</label>
+              <input type="text" id="edit-mi-original-title" placeholder="Original title" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Plot / Overview</label>
+              <textarea id="edit-mi-plot" placeholder="Plot summary" class="edit-input edit-textarea"></textarea>
+            </div>
+            <div class="edit-form-row">
+              <label>Tagline</label>
+              <input type="text" id="edit-mi-tagline" placeholder="Tagline" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Release Date</label>
+              <input type="text" id="edit-mi-release-date" placeholder="YYYY-MM-DD" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Runtime (minutes)</label>
+              <input type="number" id="edit-mi-runtime" placeholder="120" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Rating (0-10)</label>
+              <input type="number" id="edit-mi-rating" placeholder="7.5" step="0.1" min="0" max="10" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Genres (comma-separated)</label>
+              <input type="text" id="edit-mi-genres" placeholder="Action, Adventure, Sci-Fi" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Director</label>
+              <input type="text" id="edit-mi-director" placeholder="Director name" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Language</label>
+              <input type="text" id="edit-mi-language" placeholder="en" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>Country</label>
+              <input type="text" id="edit-mi-country" placeholder="US" class="edit-input">
+            </div>
+            <div class="edit-form-row">
+              <label>YouTube Trailer ID</label>
+              <input type="text" id="edit-mi-trailer" placeholder="dQw4w9WgXcQ" class="edit-input">
+            </div>
+            <div class="edit-form-row tv-only-field hidden">
+              <label>First Air Date</label>
+              <input type="text" id="edit-mi-first-air-date" placeholder="YYYY-MM-DD" class="edit-input">
+            </div>
+            <div class="edit-form-row tv-only-field hidden">
+              <label>Last Air Date</label>
+              <input type="text" id="edit-mi-last-air-date" placeholder="YYYY-MM-DD" class="edit-input">
+            </div>
+            <div class="edit-form-row tv-only-field hidden">
+              <label>Number of Seasons</label>
+              <input type="number" id="edit-mi-num-seasons" placeholder="1" class="edit-input">
+            </div>
+            <div class="edit-form-row tv-only-field hidden">
+              <label>Number of Episodes</label>
+              <input type="number" id="edit-mi-num-episodes" placeholder="10" class="edit-input">
+            </div>
+            <div class="edit-form-row tv-only-field hidden">
+              <label>Status</label>
+              <select id="edit-mi-status" class="edit-input">
+                <option value="">-- Select --</option>
+                <option value="Returning Series">Returning Series</option>
+                <option value="Ended">Ended</option>
+                <option value="Canceled">Canceled</option>
+                <option value="In Production">In Production</option>
+                <option value="Pilot">Pilot</option>
+              </select>
+            </div>
+          </div>
+          <div class="release-detail-actions">
+            <button class="btn-primary action-btn" id="edit-movie-info-save-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+              Save Changes
+            </button>
+            <button class="btn-secondary action-btn" id="edit-movie-info-fetch-tmdb-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+              Fetch TMDB Data
+            </button>
+            <button class="btn-secondary action-btn" id="edit-movie-info-cancel-btn">Cancel</button>
+            <button class="btn-danger action-btn delete-full-btn" id="edit-movie-info-delete-btn">
+              Delete Show
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TMDB Search & Link Dialog -->
+    <div id="tmdb-search-overlay" class="tmdb-search-overlay hidden">
+      <div class="tmdb-search-content">
+        <div class="tmdb-search-header">
+          <h2 id="tmdb-search-title">Search TMDB</h2>
+          <button class="close-search" id="close-tmdb-search">✕</button>
+        </div>
+        <div class="tmdb-search-body">
+          <div class="search-input-row">
+            <input type="text" id="tmdb-search-input" placeholder="Enter title..." class="tmdb-search-input">
+            <button id="tmdb-search-btn" class="tmdb-search-btn">Search</button>
+          </div>
+          <div id="tmdb-search-results" class="tmdb-search-results"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="fanart-cover-overlay" class="tmdb-search-overlay hidden">
+      <div class="tmdb-search-content fanart-search-content">
+        <div class="tmdb-search-header">
+          <h2 id="fanart-cover-title">Choose Fanart Artwork</h2>
+          <button class="close-search" id="close-fanart-cover">✕</button>
+        </div>
+        <div class="tmdb-search-body">
+          <div id="fanart-cover-results" class="fanart-cover-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trailer Player Modal -->
+    <div id="trailer-overlay" class="trailer-overlay hidden">
+      <div class="trailer-player">
+        <div class="trailer-header">
+          <h3 id="trailer-title">Trailer</h3>
+          <button id="trailer-close-btn" class="trailer-close-btn">✕</button>
+        </div>
+        <div class="trailer-content">
+          <div class="trailer-iframe-container" id="trailer-container">
+            <iframe id="trailer-iframe" frameborder="0" referrerpolicy="no-referrer-when-downgrade" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+          </div>
+          <div class="trailer-fallback">
+            <button id="trailer-open-browser-btn" class="trailer-browser-btn">
+              <svg class="inline-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              Open Trailer in Browser
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=10"></script>
+</body>
+</html>

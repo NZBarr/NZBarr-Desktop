@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NZBarr is a desktop app for managing NZB-based media libraries with smart preparation, archive-friendly analysis, and a polished browser-style interface." />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <title>NZBarr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise"></div>
+  <header class="site-header" id="top">
+    <div class="brand-lockup">
+      <div class="brand-mark">
+        <img src="assets/images/nzbarr-logo-classic.svg" alt="NZBarr" onerror="this.style.display='none'; this.parentElement.textContent='NZ';">
+      </div>
+      <div class="brand-copy">
+        <div class="brand-name">NZBarr</div>
+        <div class="brand-tagline">Private screening lounge for your Usenet library</div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="download.html">Pricing</a>
+      <a href="manuals.html">Manuals</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="faq.html">FAQ</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="status-pill" href="https://license.nzbarr.com" target="_blank" rel="noreferrer">License Server</a>
+  </header>
+
+  <main class="site-shell">
+    <section class="hero-panel">
+      <div class="hero-copy">
+        <p class="eyebrow">Usenet, organized like a proper library</p>
+        <h1>Your desktop home for NZB browsing, importing, and metadata control.</h1>
+        <p class="lede">
+          NZBarr keeps NZBs, artwork, metadata, and archive handling in one polished desktop workflow so you can browse, prepare, refresh, and manage a media library without the usual clutter.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="download.html">See editions</a>
+          <a class="button secondary" href="manuals.html">Open manuals</a>
+        </div>
+        <ul class="hero-points">
+          <li>macOS, Windows, and Linux support</li>
+          <li>Smart preparation and archive-friendly analysis</li>
+          <li>Local licensing with a separate backend</li>
+        </ul>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-head">
+          <span class="dot"></span>
+          <span>NZBarr Desktop</span>
+        </div>
+        <div class="hero-card-title">Built for people who want their NZB library to feel clean, fast, and intentional.</div>
+        <div class="hero-card-grid">
+          <div>
+            <strong>Browse</strong>
+            <span>Releases, categories, and linked media in one place</span>
+          </div>
+          <div>
+            <strong>Import</strong>
+            <span>Smartly prepare filenames and keep useful tags</span>
+          </div>
+          <div>
+            <strong>Refresh</strong>
+            <span>Reprocess older releases when they need new life</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-band">
+      <div>
+        <p class="eyebrow">Why NZBarr</p>
+        <h2>A premium desktop library for people who want control without friction.</h2>
+      </div>
+      <p class="band-copy">
+        NZBarr is designed for a small, focused audience that values a polished interface, clear feature tiers, and enough flexibility to handle both fresh imports and older archive-style releases.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <p class="eyebrow">What you get</p>
+        <h2>Key parts of the NZBarr workflow.</h2>
+      </div>
+      <div class="content-grid two-up">
+        <article class="info-card"><h3>Browse releases</h3><p>Work from a clean desktop browser that groups releases, linked media, and media-type details in one place.</p></article>
+        <article class="info-card"><h3>Smart preparation</h3><p>Prepare release names before import while keeping important descriptive text and sensible filename tags.</p></article>
+        <article class="info-card"><h3>Analyze archives</h3><p>Re-analyze old or incomplete releases with a capped download pass and fallback metadata parsing when needed.</p></article>
+        <article class="info-card"><h3>Refresh older NZBs</h3><p>Keep older releases alive with the auto-refresh workflow, downloader handoff, and re-upload pipeline.</p></article>
+        <article class="info-card"><h3>Drag & drop import</h3><p>Drop NZB files straight into the app window for a faster import path when you already have the files at hand.</p></article>
+        <article class="info-card"><h3>Use your API keys</h3><p>Enter TMDB and Fanart.tv API keys in Settings so NZBarr can fetch covers, backdrops, logos, and richer metadata.</p></article>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <p class="eyebrow">System requirements</p>
+        <h2>What you need to run NZBarr well.</h2>
+      </div>
+      <div class="content-grid two-up">
+        <article class="support-card">
+          <h3>Supported desktop systems</h3>
+          <p>NZBarr is built for modern macOS, Windows, and Linux desktops. It is designed to feel native enough to run comfortably across all three platforms.</p>
+        </article>
+        <article class="support-card">
+          <h3>Storage and network</h3>
+          <p>Have enough local storage for your library, metadata cache, and temporary analysis files. NZBarr also needs internet access for metadata lookups, licensing, and downloader handoff.</p>
+        </article>
+        <article class="support-card">
+          <h3>External helpers</h3>
+          <p>To get the most out of the app, point NZBarr at a supported downloader and the helper tools it calls on for refresh and archive analysis.</p>
+        </article>
+        <article class="support-card">
+          <h3>Best fit</h3>
+          <p>NZBarr is ideal for users who want a desktop-first library manager rather than a web-only experience or a fully automated TV-style workflow.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <p class="eyebrow">Screenshots</p>
+        <h2>A quick visual tour of the main screens.</h2>
+      </div>
+      <div class="screenshot-grid">
+        <article class="screenshot-card large">
+          <a class="screenshot-link" href="assets/images/home-page.jpg" data-lightbox data-caption="Home page">
+            <img class="screenshot-image" src="assets/images/home-page.jpg" alt="NZBarr home page screenshot" />
+          </a>
+          <div class="screenshot-copy">
+            <h3>Home</h3>
+            <p>The landing page that introduces NZBarr and its main workflow at a glance.</p>
+          </div>
+        </article>
+        <article class="screenshot-card">
+          <a class="screenshot-link" href="assets/images/collections-page.jpg" data-lightbox data-caption="Collections page">
+            <img class="screenshot-image" src="assets/images/collections-page.jpg" alt="NZBarr collections page screenshot" />
+          </a>
+          <div class="screenshot-copy">
+            <h3>Collections</h3>
+            <p>Track sets, spot gaps, and see which titles are already in the shelf.</p>
+          </div>
+        </article>
+        <article class="screenshot-card">
+          <a class="screenshot-link" href="assets/images/Library-page.jpg" data-lightbox data-caption="Library page">
+            <img class="screenshot-image" src="assets/images/Library-page.jpg" alt="NZBarr library page screenshot" />
+          </a>
+          <div class="screenshot-copy">
+            <h3>Library</h3>
+            <p>Browse your linked movies and series with clearer filtering and quick detail access.</p>
+          </div>
+        </article>
+        <article class="screenshot-card">
+          <a class="screenshot-link" href="assets/images/Movie-detail-page-1.jpg" data-lightbox data-caption="Movie detail page">
+            <img class="screenshot-image" src="assets/images/Movie-detail-page-1.jpg" alt="NZBarr movie detail screenshot" />
+          </a>
+          <div class="screenshot-copy">
+            <h3>Movie detail</h3>
+            <p>View a richer movie detail page with cast, backdrop, and linked release information.</p>
+          </div>
+        </article>
+        <article class="screenshot-card">
+          <a class="screenshot-link" href="assets/images/Actor-detail-page.jpg" data-lightbox data-caption="Actor detail page">
+            <img class="screenshot-image" src="assets/images/Actor-detail-page.jpg" alt="NZBarr actor detail screenshot" />
+          </a>
+          <div class="screenshot-copy">
+            <h3>Actor detail</h3>
+            <p>Explore cast pages, discover related titles, and keep the star view visually strong.</p>
+          </div>
+        </article>
+        <article class="screenshot-card">
+          <a class="screenshot-link" href="assets/images/Fanart-choose-cover-page.jpg" data-lightbox data-caption="Fanart artwork picker">
+            <img class="screenshot-image" src="assets/images/Fanart-choose-cover-page.jpg" alt="NZBarr Fanart artwork picker screenshot" />
+          </a>
+          <div class="screenshot-copy">
+            <h3>Artwork picker</h3>
+            <p>Choose the cover that fits best when Fanart.tv has more than one good option.</p>
+          </div>
+        </article>
+      </div>
+      <div class="callout">
+        Click any screenshot to open a larger preview.
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <p class="eyebrow">Quick setup</p>
+        <h2>The essentials at a glance.</h2>
+      </div>
+      <div class="content-grid two-up">
+        <article class="info-card"><h3>Downloader</h3><p>Configure <a href="https://sabnzbd.org/downloads" target="_blank" rel="noreferrer">SABnzbd</a> or <a href="https://nzbget.net/download" target="_blank" rel="noreferrer">NZBGet</a> so NZBarr can hand releases off cleanly.</p></article>
+        <article class="info-card"><h3>TMDB API key</h3><p>Needed for matching and richer metadata when importing or editing releases.</p></article>
+        <article class="info-card"><h3>Fanart.tv API key</h3><p>Needed for the extra artwork buttons and better-looking detail pages.</p></article>
+        <article class="info-card"><h3>Helper tools</h3><p><a href="https://mediaarea.net/MediaInfo" target="_blank" rel="noreferrer">MediaInfo</a>, <a href="https://ngpost.net/" target="_blank" rel="noreferrer">ngPost</a>, and <a href="https://www.7-zip.org/download.html" target="_blank" rel="noreferrer">7-Zip</a> or <a href="https://www.rarlab.com/" target="_blank" rel="noreferrer">WinRAR / UnRAR</a> support the advanced re-analyze and refresh workflows.</p></article>
+      </div>
+    </section>
+
+    <section class="intro-band">
+      <div>
+        <p class="eyebrow">Start here</p>
+        <h2>Read the manuals, compare the editions, then decide what you need.</h2>
+      </div>
+      <p class="band-copy">
+        The site is organized so new users can understand the basics quickly, while testers and power users can jump into the manuals for the more detailed workflow notes.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="docs-grid">
+        <article class="doc-card"><span>01</span><h3><a href="download.html">Pricing</a></h3><p>Free, Yearly, and Lifetime options in one simple overview.</p></article>
+        <article class="doc-card"><span>02</span><h3><a href="manuals.html">Manuals</a></h3><p>Setup notes, import guidance, refresh flow, and troubleshooting pointers.</p></article>
+        <article class="doc-card"><span>03</span><h3><a href="how-it-works.html">How It Works</a></h3><p>A simple end-to-end library flow for import, browse, refresh, and play.</p></article>
+        <article class="doc-card"><span>04</span><h3><a href="faq.html">FAQ</a></h3><p>Practical answers for people evaluating NZBarr or setting it up for the first time.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <strong>NZBarr</strong>
+        <span>Desktop library management for NZB-based collections.</span>
+      </div>
+      <div class="footer-links">
+        <a href="download.html">Download</a>
+        <a href="manuals.html">Manuals</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

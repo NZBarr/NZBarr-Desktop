@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+builds/
+dist/
+out/
+
+# Electron
+electron-builder.yml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+.opencode/
+.sixth/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Database
+*.db
+*.sqlite
+
+# Local secrets
+.local-secrets/
+.env
+.env.*
+BAK/
+website/api/config.php
+license-server/config.php

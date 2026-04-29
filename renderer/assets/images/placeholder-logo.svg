@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="200" viewBox="0 0 500 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3a2c1a"/>
+      <stop offset="100%" stop-color="#18120c"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="200" fill="url(#bg)"/>
+  <rect x="154" y="44" width="192" height="112" rx="16" fill="#2c2116" stroke="#d6b86b" stroke-opacity="0.32" stroke-width="2"/>
+  <text x="250" y="104" text-anchor="middle" fill="#f1ddb0" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" letter-spacing="3">LOGO</text>
+  <text x="250" y="176" text-anchor="middle" fill="#edd9a7" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">NO LOGO AVAILABLE</text>
+</svg>

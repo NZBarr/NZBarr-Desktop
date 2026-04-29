@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact NZBarr for general questions, license delivery, or support." />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <title>Contact | NZBarr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise"></div>
+  <header class="site-header">
+    <div class="brand-lockup">
+      <div class="brand-mark">
+        <img src="assets/images/nzbarr-logo-classic.svg" alt="NZBarr" onerror="this.style.display='none'; this.parentElement.textContent='NZ';">
+      </div>
+      <div class="brand-copy">
+        <div class="brand-name">NZBarr</div>
+        <div class="brand-tagline">Private screening lounge for your Usenet library</div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="download.html">Download</a>
+      <a href="manuals.html">Manuals</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <a class="status-pill" href="https://license.nzbarr.com" target="_blank" rel="noreferrer">License Server</a>
+  </header>
+
+  <main class="site-shell">
+    <section class="intro-band">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Reach the right NZBarr inbox.</h1>
+      </div>
+      <p class="band-copy">Send your message from the site itself, so licensing, support, and general questions stay easy to follow without opening a mail app.</p>
+    </section>
+
+    <section class="section-block">
+      <div class="content-grid two-up">
+        <article class="support-card">
+          <h3>Where messages go</h3>
+          <p>The form can route your message to the right inbox automatically.</p>
+          <ul>
+            <li>General questions go to `info@nzbarr.com`</li>
+            <li>License and payment questions go to `license@nzbarr.com`</li>
+            <li>Setup and troubleshooting go to `support@nzbarr.com`</li>
+          </ul>
+        </article>
+        <article class="support-card">
+          <h3>Tip</h3>
+          <p>For paid license delivery, include the PayPal email, selected plan, and transaction ID when available.</p>
+          <div class="card-actions">
+            <a class="button secondary" href="download.html">Back to downloads</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <form class="license-form" id="contact-request-form" action="api/contact-request.php" method="post">
+        <div class="section-head">
+          <p class="eyebrow">Contact request</p>
+          <h2>Send a message</h2>
+        </div>
+        <div class="form-hidden" aria-hidden="true">
+          <label>
+            <span>Website</span>
+            <input type="text" name="company" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+        <div class="form-grid">
+          <label>
+            <span>Topic</span>
+            <select name="topic" required>
+              <option value="">Choose a topic</option>
+              <option value="general">General question</option>
+              <option value="license">License or payment</option>
+              <option value="support">Setup or support</option>
+            </select>
+          </label>
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" placeholder="Your name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="name@example.com" required />
+          </label>
+          <label>
+            <span>Subject</span>
+            <input type="text" name="subject" placeholder="Short subject" required />
+          </label>
+        </div>
+        <label class="form-full">
+          <span>Message</span>
+          <textarea name="message" rows="6" placeholder="Tell us what you need help with." required></textarea>
+        </label>
+        <button class="button primary block" type="submit">Send Message</button>
+        <p class="form-status" id="contact-request-status" aria-live="polite"></p>
+      </form>
+      <div class="success-panel" id="contact-request-success" aria-live="polite" hidden>
+        <p class="eyebrow">Message sent</p>
+        <h2>Thanks. We’ve received your message.</h2>
+        <p>NZBarr support will reply by email as soon as possible.</p>
+        <div class="card-actions">
+          <a class="button secondary" href="index.html">Back home</a>
+          <a class="button primary" href="download.html">Download</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <strong>NZBarr</strong>
+        <span>General questions, license help, and support in one place.</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="download.html">Download</a>
+        <a href="manuals.html">Manuals</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="faq.html">FAQ</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

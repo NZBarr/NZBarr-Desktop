@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2f2417"/>
+      <stop offset="52%" stop-color="#1e1710"/>
+      <stop offset="100%" stop-color="#110d09"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b5331"/>
+      <stop offset="100%" stop-color="#3d2f1d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="146" cy="132" r="190" fill="#f7ebc7" opacity="0.06"/>
+  <circle cx="1160" cy="104" r="160" fill="#f7ebc7" opacity="0.04"/>
+  <rect x="490" y="248" width="300" height="212" rx="24" fill="url(#frame)" stroke="#d6b86b" stroke-opacity="0.3" stroke-width="2"/>
+  <polygon points="582,292 582,420 724,356" fill="#f1ddb0" fill-opacity="0.86"/>
+  <text x="640" y="542" text-anchor="middle" fill="#edd9a7" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="2">NO BACKDROP AVAILABLE</text>
+</svg>

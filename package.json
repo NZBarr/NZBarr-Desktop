@@ -1,0 +1,110 @@
+{
+  "name": "nzbarr-desktop",
+  "version": "0.1.0",
+  "description": "NZBarr Desktop - Your Usenet Media Library",
+  "homepage": "https://nzbarr.com",
+  "main": "main-process/main.js",
+  "scripts": {
+    "start": "unset ELECTRON_RUN_AS_NODE && electron .",
+    "dev": "export NODE_ENV=development && electron .",
+    "build": "npm run build:mac && npm run build:win && npm run build:linux",
+    "build:mac": "electron-builder --mac dmg zip --x64 --arm64",
+    "build:win": "electron-builder --win nsis portable --x64",
+    "build:linux": "electron-builder --linux AppImage --x64 && node scripts/build-deb.js"
+  },
+  "author": {
+    "name": "NZBarr",
+    "email": "hello@nzbarr.com"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^24.9.1",
+    "sharp": "^0.34.5"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.9.0",
+    "iconv-lite": "^0.7.2",
+    "xml2js": "^0.6.2"
+  },
+  "build": {
+    "appId": "com.nzbarr.desktop",
+    "productName": "NZBarr",
+    "directories": {
+      "output": "dist",
+      "buildResources": "resources"
+    },
+    "files": [
+      "main-process/**/*",
+      "renderer/**/*",
+      "src/**/*",
+      "config/**/*",
+      "docs/database-schema.sql",
+      "package.json",
+      "!**/.DS_Store",
+      "!**/*.map",
+      "!**/*.log",
+      "!**/node_modules/.cache/**/*"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "npmRebuild": true,
+    "mac": {
+      "category": "public.app-category.entertainment",
+      "icon": "icons/icon-1024.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "extendInfo": {
+        "LSEnvironment": {
+          "ELECTRON_RUN_AS_NODE": ""
+        }
+      }
+    },
+    "win": {
+      "icon": "icons/icon-1024.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "icons/icon-1024.png",
+      "category": "AudioVideo",
+      "maintainer": "NZBarr <hello@nzbarr.com>",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  }
+}
