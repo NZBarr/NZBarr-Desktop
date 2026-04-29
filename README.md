@@ -9,7 +9,7 @@ This open-source checkout runs as `NZBarr-GIT`. It uses a separate app name, app
 ## What NZBarr Can Do
 
 - Import `.nzb` and `.nzb.gz` files into a local SQLite library.
-- Organize NZBs as movies, TV episodes, complete TV seasons, music, or other releases.
+- Organize NZBs as movies, TV episodes, complete TV seasons, or other releases.
 - Match movies and TV shows with TMDB and IMDb IDs.
 - Download and cache artwork such as posters, backdrops, and logos.
 - Browse, search, and group your NZB library.
@@ -80,6 +80,12 @@ Complete TV season example:
 
 ```text
 Show Title [S01] (2024) [1080P-WEB-DL-DD5.1-H.264-GROUP-mkv] [imdb-tt1234567] [tmdb-12345].nzb
+```
+
+Complete TV Series example:
+
+```text
+Show Title [S99] (2024) [1080P-WEB-DL-DD5.1-H.264-GROUP-mkv] [imdb-tt1234567] [tmdb-12345].nzb
 ```
 
 Recommended parts:
