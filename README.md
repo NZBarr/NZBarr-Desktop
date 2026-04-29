@@ -30,6 +30,10 @@ The recommended workflow is:
 
 Smart Preparation is important because raw NZB filenames are often messy. A filename can contain scene tags, provider tags, missing years, missing IMDb IDs, or unclear TV season data. Smart Preparation tries to normalize that before import, which gives NZBarr a much better chance of matching the right movie or TV show.
 
+## Documentation
+
+- [Settings Guide](docs/settings.md): explains each section of the Settings page.
+
 ## Smart Preparation
 
 Open `Settings > Import & Link > Smart Preparation`.
