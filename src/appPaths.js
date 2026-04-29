@@ -9,7 +9,7 @@ class AppPaths {
 
   /**
    * Get the base data directory for all app data
-   * Always uses electron's userData path (~/Library/Application Support/nzbarr-desktop on macOS)
+   * Always uses electron's userData path.
    * This is reliable across all platforms and build types (dev and production)
    */
   getBaseDataPath() {

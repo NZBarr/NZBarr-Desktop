@@ -13,6 +13,8 @@ NZBarr Desktop is a standalone desktop application that:
 
 NZBarr is free and open source software licensed under GPL-3.0-or-later.
 
+This open-source checkout runs and builds as `NZBarr-GIT`, with a separate app ID and data folder, so it can live next to an existing personal NZBarr install.
+
 ## Tech Stack
 
 - **Electron** - Desktop app framework
@@ -38,6 +40,14 @@ NZBarr-Desktop/
 
 - Node.js 18+ installed
 - npm or yarn
+
+### Run Locally
+
+```bash
+npm start
+# or
+bash start.sh
+```
 
 ### System Requirements
 

@@ -5,8 +5,8 @@
   "homepage": "https://nzbarr.com",
   "main": "main-process/main.js",
   "scripts": {
-    "start": "unset ELECTRON_RUN_AS_NODE && electron .",
-    "dev": "export NODE_ENV=development && electron .",
+    "start": "unset ELECTRON_RUN_AS_NODE && NZBARR_APP_VARIANT=git electron .",
+    "dev": "export NODE_ENV=development && unset ELECTRON_RUN_AS_NODE && NZBARR_APP_VARIANT=git electron .",
     "build": "npm run build:mac && npm run build:win && npm run build:linux",
     "build:mac": "electron-builder --mac dmg zip --x64 --arm64",
     "build:win": "electron-builder --win nsis portable --x64",
@@ -28,8 +28,8 @@
     "xml2js": "^0.6.2"
   },
   "build": {
-    "appId": "com.nzbarr.desktop",
-    "productName": "NZBarr",
+    "appId": "com.nzbarr.git",
+    "productName": "NZBarr-GIT",
     "directories": {
       "output": "dist",
       "buildResources": "resources"

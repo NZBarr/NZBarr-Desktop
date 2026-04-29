@@ -5,6 +5,12 @@ const https = require('https');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+
+if (process.env.NZBARR_APP_VARIANT === 'git') {
+  app.setName('NZBarr-GIT');
+  app.setPath('userData', path.join(app.getPath('appData'), 'NZBarr-GIT'));
+}
+
 const appPaths = require('../src/appPaths');
 const nzbFileUtils = require('../src/nzbFileUtils');
 
