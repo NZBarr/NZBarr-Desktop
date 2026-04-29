@@ -51,6 +51,7 @@ class NZBarrApp {
   }
 
   async init() {
+    await this.loadAppInfo();
     this.setupNavigation();
     this.setupHomeCarousels();
     this.setupLibraryPage();
@@ -67,6 +68,29 @@ class NZBarrApp {
     this.setupAutoRefreshNotifications();
     this.setupDragDrop();
     this.deferHomeCarouselLoad();
+  }
+
+  async loadAppInfo() {
+    try {
+      const info = await window.electron.getAppInfo();
+      const isGitVariant = info?.variant === 'git' || info?.name === 'NZBarr-GIT';
+
+      document.body.classList.toggle('git-build', isGitVariant);
+      document.title = isGitVariant ? 'NZBarr-GIT' : 'NZBarr';
+
+      const badge = document.getElementById('git-build-badge');
+      if (badge) {
+        badge.hidden = !isGitVariant;
+        badge.textContent = isGitVariant ? 'NZBarr-GIT' : '';
+      }
+
+      const versionBadge = document.querySelector('.version-badge');
+      if (versionBadge && info?.version) {
+        versionBadge.textContent = `v${info.version}`;
+      }
+    } catch (error) {
+      console.warn('Could not load app info:', error);
+    }
   }
 
   deferHomeCarouselLoad() {

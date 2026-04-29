@@ -525,6 +525,12 @@ app.on('window-all-closed', () => {
 
 // IPC handlers
 ipcMain.handle('app:version', () => app.getVersion());
+ipcMain.handle('app:info', () => ({
+  name: app.getName(),
+  version: app.getVersion(),
+  variant: process.env.NZBARR_APP_VARIANT || ''
+}));
+
 ipcMain.handle('app:path', (event, name) => {
   return app.getPath(name);
 });

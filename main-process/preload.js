@@ -4,6 +4,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('electron', {
   // App info
   getAppVersion: () => ipcRenderer.invoke('app:version'),
+  getAppInfo: () => ipcRenderer.invoke('app:info'),
   getAppPath: (name) => ipcRenderer.invoke('app:path', name),
   copyToClipboard: (text) => ipcRenderer.invoke('app:copyToClipboard', text),
   openExternal: (url) => ipcRenderer.invoke('app:openExternal', url),
