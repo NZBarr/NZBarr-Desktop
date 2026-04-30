@@ -20,8 +20,8 @@ Optional tools:
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/Hempie1964/NZBarr-GIT.git
-cd NZBarr-GIT
+git clone https://github.com/NZBarr/NZBarr-Desktop.git
+cd NZBarr-Desktop
 npm install
 ```
 
