@@ -25,7 +25,7 @@ Your contribution helps cover hosting, energy costs, and ongoing improvements.
 
 <p align="center">
   <a href="https://nzbarr.com">
-    <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="200"/><br/>
+    <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/><br/>
     <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" />
   </a>
 </p>
