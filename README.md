@@ -4,8 +4,6 @@ NZBarr is a desktop library for NZB files. It lets you keep a small local media 
 
 NZBarr does not include media, Usenet access, indexer access, or downloader software. You need your own Usenet provider, NZB files, and optional downloader setup.
 
-This open-source checkout runs as `NZBarr-GIT`. It uses a separate app name, app ID, and data folder so it can live next to a private or older NZBarr install.
-
 ## What NZBarr Can Do
 
 - Import `.nzb` and `.nzb.gz` files into a local SQLite library.
