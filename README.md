@@ -261,13 +261,20 @@ If you find **NZBarr** useful, consider supporting its development.
 Your contribution helps cover hosting, energy costs, and ongoing improvements.
 
 <p align="center">
-  <a href="https://nzbarr.com">
+  <a href="https://nzbarr.com/support.html">
     <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/><br/>
-    <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" />
+    <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" alt="Support NZBarr" />
   </a>
 </p>
 
-## License
+<p align="center">
+  <a href="https://ko-fi.com/Q5Q01P6XIF">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support NZBarr on Ko-fi">
+  </a>
+</p>
+
+
+  ## License
 
 NZBarr is free and open source software licensed under GPL-3.0-or-later. See [LICENSE](LICENSE).
 
