@@ -46,43 +46,43 @@ Some documentation screenshots may show movie and TV metadata or artwork. NZBarr
 
 ### Home
 
-![NZBarr home page](renderer/assets/images/home-page.jpg)
+<img src="renderer/assets/images/home-page.jpg" alt="NZBarr home page" width="50%">
 
 The home page gives a visual overview of the library, including highlighted titles, recent items, and quick entry points into the rest of the app.
 
 ### Browse
 
-![NZBarr browse page](renderer/assets/images/browse-page.jpg)
+<img src="renderer/assets/images/browse-page.jpg" alt="NZBarr browse page" width="50%">
 
 The browse page lists imported NZB releases with search, sorting, filtering, and release metadata for day-to-day library management.
 
 ### Library
 
-![NZBarr library page](renderer/assets/images/Library-page.jpg)
+<img src="renderer/assets/images/Library-page.jpg" alt="NZBarr library page" width="50%">
 
 The library page groups imported releases by movie or show, so multiple NZB versions can be managed under one media entry.
 
 ### Movie Details
 
-![NZBarr movie detail page](renderer/assets/images/Movie-detail-page-1.jpg)
+<img src="renderer/assets/images/Movie-detail-page-1.jpg" alt="NZBarr movie detail page" width="50%">
 
 The movie detail page shows metadata, artwork, cast information, and all available NZB releases linked to that title.
 
 ### Release Details
 
-![NZBarr release detail page](renderer/assets/images/release-detail-page.jpg)
+<img src="renderer/assets/images/release-detail-page.jpg" alt="NZBarr release detail page" width="50%">
 
 The release detail view shows technical release information, NFO and MediaInfo details, refresh status, and download actions.
 
 ### Collections
 
-![NZBarr collections page](renderer/assets/images/collections-page.jpg)
+<img src="renderer/assets/images/collections-page.jpg" alt="NZBarr collections page" width="50%">
 
 Collections group related movies together and make it easier to see which titles are already in the library and which are missing.
 
 ### Settings
 
-![NZBarr settings page](renderer/assets/images/settings-page.jpg)
+<img src="renderer/assets/images/settings-page.jpg" alt="NZBarr settings page" width="50%">
 
 The settings page is where users configure API keys, downloader connections, Smart Preparation folders, playback, and advanced refresh options.
 
