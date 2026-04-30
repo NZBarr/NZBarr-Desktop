@@ -191,7 +191,7 @@ NZBarr-GIT/
 
 ## Donate
 
-[![Doneer](https://img.shields.io/badge/Doneer-klik%20hier-green)](https://nzbarr.com)
+[![Donate](https://img.shields.io/badge/Donate-click%20here-green)](https://nzbarr.com)
 
 ## License
 
