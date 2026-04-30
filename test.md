@@ -2,19 +2,24 @@
   <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="180"/>
 </p>
 
-<h1 align="center">NZBarr</h1>
+# NZBarr
 
-<p align="center">
-  A desktop library for NZB files — organize, enrich, and manage your NZB collection with ease.
-</p>
+NZBarr is a desktop library for NZB files. It lets you keep a small local media library made from NZBs, enrich it with movie and TV metadata, and send items to a downloader when you want to use them.
 
-<p align="center">
-  <a href="https://nzbarr.com">
-    <img src="https://img.shields.io/badge/Website-nzbarr.com-C9A646?style=for-the-badge&logoColor=black"/>
-  </a>
-</p>
+NZBarr does not include media, Usenet access, indexer access, or downloader software. You need your own Usenet provider, NZB files, and optional downloader setup.
 
----
+## What NZBarr Can Do
+
+- Import `.nzb` and `.nzb.gz` files into a local SQLite library.
+- Organize NZBs as movies, TV episodes, complete TV seasons, or other releases.
+- Match movies and TV shows with TMDB and IMDb IDs.
+- Download and cache artwork such as posters, backdrops, and logos.
+- Browse, search, and group your NZB library.
+- Link NZBs manually to a movie or TV show when automatic matching is not enough.
+- Send NZBs to SABnzbd or NZBGet.
+- Import direct stream URLs into the stream library.
+- Use external players such as VLC, IINA, or MPV when configured.
+- Run a refresh/repost workflow with SABnzbd and ngPost when those external tools are installed and configured.
 
 ## 💛 Support NZBarr
 
@@ -23,76 +28,185 @@ Your contribution helps cover hosting, energy costs, and ongoing improvements.
 
 <p align="center">
   <a href="https://nzbarr.com">
+    <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/><br/>
     <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" />
   </a>
 </p>
 
----
+## Best NZB Import Workflow
 
-## 📦 What is NZBarr?
+The recommended workflow is:
 
-NZBarr is a desktop library for NZB files. It lets you keep a small local media library made from NZBs, enrich it with movie and TV metadata, and send items to a downloader when you want to use them.
+1. Put new NZB files in preparation folders.
+2. Run Smart Preparation from Settings.
+3. Let NZBarr rename the files into a clean pattern.
+4. Use `Prepare + Import` to import the prepared files into your library.
 
-NZBarr does **not** include media, Usenet access, indexers, or downloader software.  
-You need your own Usenet provider, NZB files, and optional downloader setup.
+Smart Preparation is important because raw NZB filenames are often messy. A filename can contain scene tags, provider tags, missing years, missing IMDb IDs, or unclear TV season data. Smart Preparation tries to normalize that before import, which gives NZBarr a much better chance of matching the right movie or TV show.
 
----
+## Documentation
 
-## 🚀 Features
+- [Settings Guide](docs/settings.md): explains each section of the Settings page.
 
-- Import `.nzb` and `.nzb.gz` files into a local SQLite library  
-- Organize NZBs as movies, TV episodes, seasons, or other releases  
-- Match content with TMDB and IMDb IDs  
-- Download and cache artwork (posters, backdrops, logos)  
-- Browse, search, and group your library  
-- Manual linking for unmatched content  
-- Send NZBs to SABnzbd or NZBGet  
-- Import direct stream URLs  
-- Use external players (VLC, IINA, MPV)  
-- Refresh/repost workflow with SABnzbd + ngPost  
+## Smart Preparation
 
----
+Open `Settings > Import & Link > Smart Preparation`.
 
-## 🔄 Best NZB Import Workflow
+Set one or both folders:
 
-1. Put NZB files in preparation folders  
-2. Run **Smart Preparation**  
-3. Let NZBarr clean filenames  
-4. Use **Prepare + Import**  
+- `Movies Preparation Folder`: folder containing movie NZBs.
+- `TV Preparation Folder`: folder containing TV episode or TV season NZBs.
 
-Raw NZB filenames are often messy. Smart Preparation normalizes them for better matching.
+Then use one of the buttons:
 
----
+- `Prepare Folders`: scans the configured folders and renames NZB files into the NZBarr filename pattern.
+- `Prepare + Import`: prepares the filenames and then imports the prepared NZBs into the NZBarr library.
 
-## ⚙️ Smart Preparation
+For best results, also configure a TMDB API key in `Settings > API Keys`. Without a TMDB key, Smart Preparation can still parse filenames, but matching and metadata are more limited.
 
-`Settings > Import & Link > Smart Preparation`
+After `Prepare + Import`, successfully imported files are moved into a `.nzbarr-imported` folder inside the preparation folder. Duplicate imports are moved into `duplicates`. Movie files that need an IMDb ID can be moved into `needs-imdb`.
 
-Configure:
-- Movies Preparation Folder  
-- TV Preparation Folder  
+## Drag And Drop Import
 
-Options:
-- `Prepare Folders`
-- `Prepare + Import`
+Drag and drop import is available, but it should be used carefully.
 
-💡 Tip: Add a TMDB API key for best results.
+Use drag and drop only when the NZB filenames are already prepared and follow the NZBarr filename pattern. If the filename is messy, incomplete, or missing important identifiers, use Smart Preparation first.
 
----
+In short:
 
-## 📥 Drag & Drop Import
+- Use `Smart Preparation` for normal importing.
+- Use `Prepare + Import` when you want the safest one-step workflow.
+- Use drag and drop only for files that already have clean names.
 
-Use only for already clean filenames.
+## Filename Pattern
 
-**Recommended:**
-- Smart Preparation → normal use  
-- Prepare + Import → safest workflow  
-- Drag & Drop → only for clean files  
+NZBarr works best when filenames contain the title, year, technical metadata, and IMDb/TMDB IDs.
 
----
+Movie example:
 
-## 🏷️ Filename Pattern
-
-**Movie:**
 ```text
-Movie Title (2024) [2160P-WEB-DL...] [imdb-tt1234567] [tmdb-12345].nzb
+Movie Title (2024) [2160P-WEB-DL-DTS-HD-MA-H.265-GROUP-mkv] [imdb-tt1234567] [tmdb-12345].nzb
+```
+
+TV episode example:
+
+```text
+Show Title [S01E02] (2024) [1080P-WEB-DL-DD5.1-H.264-GROUP-mkv] [imdb-tt1234567] [tmdb-12345].nzb
+```
+
+Complete TV season example:
+
+```text
+Show Title [S01] (2024) [1080P-WEB-DL-DD5.1-H.264-GROUP-mkv] [imdb-tt1234567] [tmdb-12345].nzb
+```
+
+Complete SPECIALS TV Series example:
+
+```text
+Show Title [S00] (2024) [1080P-WEB-DL-DD5.1-H.264-GROUP-mkv] [imdb-tt1234567] [tmdb-12345].nzb
+```
+
+Complete TV Series example:
+
+```text
+Show Title [S99] (2024) [1080P-WEB-DL-DD5.1-H.264-GROUP-mkv] [imdb-tt1234567] [tmdb-12345].nzb
+```
+
+Recommended parts:
+
+- Title first.
+- Year in parentheses, for example `(2024)`.
+- TV season or episode in brackets, for example `[S01]` or `[S01E02]` or `[S00E01]` for specials or `[S99]` for complete series.
+- Technical metadata in one bracket, for example `[1080P-WEB-DL-DD5.1-H.264-GROUP-mkv]`.
+- IMDb ID, for example `[imdb-tt1234567]`.
+- TMDB ID, for example `[tmdb-12345]`.
+
+The IDs are strongly recommended. Titles can be ambiguous, remakes can share the same name, and TV shows can have regional title differences. IMDb and TMDB IDs make matching much more reliable.
+
+## Running From Source
+
+Install Node.js 18 or newer, then install dependencies:
+
+```bash
+npm install
+```
+
+Start the Git version:
+
+```bash
+bash start.sh
+```
+
+You can also run:
+
+```bash
+npm start
+```
+
+This checkout starts as `NZBarr-GIT` and uses a separate app data folder from the normal `NZBarr` app.
+
+Common app data locations:
+
+```text
+macOS:   ~/Library/Application Support/NZBarr-GIT
+Windows: %APPDATA%\NZBarr-GIT
+Linux:   ~/.config/NZBarr-GIT
+```
+
+The exact location can vary depending on how Electron is packaged on a platform, but the important point is that `NZBarr-GIT` is kept separate from an existing `NZBarr` install.
+
+## Building
+
+```bash
+npm run build        # all configured platforms
+npm run build:mac    # macOS
+npm run build:win    # Windows
+npm run build:linux  # Linux
+```
+
+Builds from this checkout use the product name `NZBarr-GIT`.
+
+## External Software
+
+Basic library import and browsing work inside NZBarr. Some features need external software.
+
+Optional downloaders:
+
+- SABnzbd
+- NZBGet
+
+Refresh/repost workflow:
+
+- SABnzbd
+- ngPost
+- MediaInfo
+- unrar
+- 7z
+
+Optional external playback:
+
+- VLC
+- IINA
+- MPV
+
+If one of these tools is missing, only the related feature should fail. The rest of NZBarr can still be used.
+
+Paths for external tools and folders are platform-specific. For example, a download folder might look like `/Users/name/Downloads` on macOS, `C:\Users\name\Downloads` on Windows, or `/home/name/Downloads` on Linux. Use paths as they exist on the computer running NZBarr.
+
+## Project Structure
+
+```text
+NZBarr-GIT/
+├── main-process/      Electron main process and preload bridge
+├── renderer/          Frontend UI
+├── src/               App services, repositories, and import logic
+├── resources/         Icons and app resources
+├── scripts/           Build and maintenance scripts
+└── docs/              Extra technical documentation
+```
+
+## License
+
+NZBarr is free and open source software licensed under GPL-3.0-or-later. See [LICENSE](LICENSE).
+
+GPL means you can use, study, change, and share the code, but redistributed versions must also follow the GPL license terms.
