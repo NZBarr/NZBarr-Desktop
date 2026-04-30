@@ -267,6 +267,10 @@ Your contribution helps cover hosting, energy costs, and ongoing improvements.
   </a>
 </p>
 
+## Ko-Fi
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q01P6XIF)
+
 ## License
 
 NZBarr is free and open source software licensed under GPL-3.0-or-later. See [LICENSE](LICENSE).
