@@ -4,7 +4,7 @@
   <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/>
 </p
 
-NZBarr is a desktop library for NZB files. It lets you keep a small local media library made from NZBs, enrich it with movie and TV metadata, and send items to a downloader when you want to use them.
+NZBarr is a desktop library for NZB files. It lets you keep a local media library made from NZBs, enrich it with movie and TV metadata, and send items to a downloader when you want to use them.
 
 NZBarr does not include media, Usenet access, indexer access, or downloader software. You need your own Usenet provider, NZB files, and optional downloader setup.
 
