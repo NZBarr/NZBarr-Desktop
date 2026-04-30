@@ -2,10 +2,6 @@
 
 Smart Preparation is the recommended way to import NZB files into NZBarr. It prepares filenames before import so matching is more reliable.
 
-## Screenshot Placeholder
-
-Add screenshots of `Settings > Smart Preparation`, the preparation buttons, and the import result here.
-
 ## What Smart Preparation Does
 
 Smart Preparation can:

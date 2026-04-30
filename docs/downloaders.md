@@ -2,10 +2,6 @@
 
 NZBarr can send NZB files to SABnzbd or NZBGet. A downloader is optional for importing and browsing, but needed if you want to start downloads from NZBarr.
 
-## Screenshot Placeholder
-
-Add screenshots of `Settings > Download Clients`, SABnzbd settings, NZBGet settings, and the connection test result here.
-
 ## Choose A Preferred Downloader
 
 Open `Settings > Download Clients` and choose:

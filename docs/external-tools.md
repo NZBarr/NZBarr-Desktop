@@ -2,10 +2,6 @@
 
 NZBarr can import and browse NZB files without most external tools. Some features need extra software.
 
-## Screenshot Placeholder
-
-Add screenshots of external tool settings, downloader settings, and Auto Refresh tool paths here.
-
 ## Optional Downloaders
 
 Use a downloader if you want NZBarr to send NZBs for downloading:

@@ -2,10 +2,6 @@
 
 This walkthrough is for a first small test import. Start with only a few NZB files so it is easy to understand what NZBarr does.
 
-## Screenshot Placeholder
-
-Add screenshots for `API Keys`, `Smart Preparation`, `Prepare + Import`, `Library`, and `Browse` here.
-
 ## Before You Start
 
 You need:

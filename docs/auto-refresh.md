@@ -4,10 +4,6 @@ Auto Refresh is an advanced workflow. It can download older NZBs, analyze the co
 
 Do not start with Auto Refresh. First make sure normal import and downloader setup work.
 
-## Screenshot Placeholder
-
-Add screenshots of `NZB Auto Refresh`, `Refresh Category Setup`, `NNTP Setup`, and the refresh queue here.
-
 ## What You Need
 
 Auto Refresh can require:

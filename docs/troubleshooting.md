@@ -2,10 +2,6 @@
 
 This page collects common NZBarr setup problems and practical fixes.
 
-## Screenshot Placeholder
-
-Add screenshots of error messages, failed connection tests, and common settings screens here.
-
 ## NZBarr Does Not Start
 
 Try:

@@ -2,10 +2,6 @@
 
 NZBarr can use TMDB to match movies and TV shows, fetch metadata, and download artwork. NZBarr does not include a TMDB API key. Each user must enter their own key in Settings.
 
-## Screenshot Placeholder
-
-Add a screenshot of `Settings > API Keys` here.
-
 ## Why TMDB Is Recommended
 
 TMDB helps NZBarr:

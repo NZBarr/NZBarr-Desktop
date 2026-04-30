@@ -2,10 +2,6 @@
 
 NZBarr works best when NZB filenames contain enough information to identify the movie or TV show before import.
 
-## Screenshot Placeholder
-
-Add screenshots of prepared filenames, Browse rows, and release detail metadata here.
-
 ## Recommended Movie Pattern
 
 ```text
