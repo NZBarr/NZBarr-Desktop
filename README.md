@@ -266,9 +266,7 @@ Your contribution helps cover hosting, energy costs, and ongoing improvements.
     <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" />
   </a>
 </p>
-<p align="center">
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q01P6XIF)
-</p>
+<p align="center">[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q01P6XIF)</p>
 
   ## License
 
