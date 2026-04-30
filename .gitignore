@@ -33,6 +33,7 @@ npm-debug.log*
 .env
 .env.*
 BAK/
+website/
 website/api/config.php
 license-server/config.php
 .opencode
