@@ -203,14 +203,15 @@ NZBarr-GIT/
 └── docs/              Extra technical documentation
 ```
 
-## ❤️ Support NZBarr
+## 💛 Support NZBarr
 
 If you find **NZBarr** useful, consider supporting its development.  
-Your contribution helps cover hosting, energy costs, and keeps the project alive and improving.
+Your contribution helps cover hosting, energy costs, and ongoing improvements.
 
 <p align="center">
   <a href="https://nzbarr.com">
-    <img src="https://img.shields.io/badge/Support-NZBarr-blue?style=for-the-badge&logo=github" />
+    <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/><br/>
+    <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" />
   </a>
 </p>
 
