@@ -122,16 +122,7 @@ Show Title [S01] (2024) [1080P-WEB-DL-DD5.1-H.264-GROUP-mkv] [imdb-tt1234567] [t
 
 IMDb and TMDB IDs are strongly recommended because titles can be ambiguous.
 
-## Screenshots For Documentation
-
-Screenshots in public documentation should avoid copyrighted movie posters, backdrops, logos, or actor photos unless you have permission or are sure your use is allowed.
-
-For the GitHub README, the safest options are:
-
-- Use screenshots made with placeholder artwork.
-- Use screenshots made with public-domain or self-created artwork.
-- Crop or blur real movie artwork before publishing.
-- Use Settings screenshots, because they usually show the app UI without third-party artwork.
+## Screenshots
 
 The screenshots currently used for NZBarr documentation may show movie and TV artwork. NZBarr does not include TMDB artwork or a TMDB API key; artwork is loaded only when a user enters their own TMDB API key. This project is not endorsed, certified, or otherwise approved by TMDB.
 
