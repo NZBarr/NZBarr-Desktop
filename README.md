@@ -1,9 +1,8 @@
+## NZBarr
 
 <p align="center">
   <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/>
 </p
-
-## NZBarr
 
 NZBarr is a desktop library for NZB files. It lets you keep a small local media library made from NZBs, enrich it with movie and TV metadata, and send items to a downloader when you want to use them.
 
