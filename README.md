@@ -261,12 +261,18 @@ If you find **NZBarr** useful, consider supporting its development.
 Your contribution helps cover hosting, energy costs, and ongoing improvements.
 
 <p align="center">
-  <a href="https://nzbarr.com">
+  <a href="https://nzbarr.com/support.html">
     <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/><br/>
-    <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" />
+    <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" alt="Support NZBarr" />
   </a>
 </p>
-<p align="center">[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q01P6XIF)</p>
+
+<p align="center">
+  <a href="https://ko-fi.com/Q5Q01P6XIF">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support NZBarr on Ko-fi">
+  </a>
+</p>
+
 
   ## License
 
