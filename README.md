@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="100"/>
-</p
+</p>
 
 NZBarr is a desktop library for NZB files. It lets you keep a local media library made from NZBs, enrich it with movie and TV metadata, and send items to a downloader when you want to use them.
 
@@ -22,19 +22,6 @@ NZBarr does not include media, Usenet access, indexer access, or downloader soft
 - Run a refresh/repost workflow with SABnzbd and ngPost when those external tools are installed and configured.
 
 
-## 💛 Support NZBarr
-
-If you find **NZBarr** useful, consider supporting its development.  
-Your contribution helps cover hosting, energy costs, and ongoing improvements.
-
-<p align="center">
-  <a href="https://nzbarr.com">
-    <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="50"/><br/>
-    <img src="https://img.shields.io/badge/Support-NZBarr-C9A646?style=for-the-badge&logoColor=black" />
-  </a>
-</p>
-
-
 ## Best NZB Import Workflow
 
 The recommended workflow is:
@@ -48,7 +35,12 @@ Smart Preparation is important because raw NZB filenames are often messy. A file
 
 ## Documentation
 
+- [Getting Started](docs/getting-started.md): install from source, configure the basics, and import your first NZBs.
 - [Settings Guide](docs/settings.md): explains each section of the Settings page.
+
+## Screenshots And Artwork
+
+Some documentation screenshots may show movie and TV metadata or artwork loaded through the TMDB API. This project uses TMDB data and images, but is not endorsed, certified, or otherwise approved by TMDB.
 
 ## Smart Preparation
 
