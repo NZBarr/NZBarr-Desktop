@@ -124,7 +124,7 @@ IMDb and TMDB IDs are strongly recommended because titles can be ambiguous.
 
 ## Screenshots
 
-The screenshots currently used for NZBarr documentation may show movie and TV artwork. NZBarr does not include TMDB artwork or a TMDB API key; nor Fanart.tv artwork; Artwork is loaded only when a user enters their own API keys. This project is not endorsed, certified, or otherwise approved by TMDB or fanart.tv.
+The screenshots currently used for NZBarr documentation may show movie and TV artwork. NZBarr does not include TMDB artwork, Fanart.tv artwork, or API keys. Artwork is loaded only when a user enters their own API keys. This project is not endorsed, certified, or otherwise approved by TMDB or Fanart.tv.
 
 ## More Help
 

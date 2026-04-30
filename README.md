@@ -40,7 +40,15 @@ Smart Preparation is important because raw NZB filenames are often messy. A file
 ## Documentation
 
 - [Getting Started](docs/getting-started.md): install from source, configure the basics, and import your first NZBs.
+- [TMDB Setup](docs/tmdb-setup.md): add your own TMDB API key for matching, metadata, and artwork.
+- [First Import Walkthrough](docs/first-import.md): import a small test folder and check the results.
+- [Smart Preparation Manual](docs/smart-preparation.md): understand the recommended NZB preparation workflow.
+- [Filename Guide](docs/filename-patterns.md): recommended naming patterns for movies, episodes, seasons, and complete series.
+- [Downloader Setup](docs/downloaders.md): configure SABnzbd or NZBGet.
 - [Settings Guide](docs/settings.md): explains each section of the Settings page.
+- [External Tools](docs/external-tools.md): optional tools for playback, downloads, and Auto Refresh.
+- [Auto Refresh Guide](docs/auto-refresh.md): advanced refresh and repost workflow.
+- [Troubleshooting](docs/troubleshooting.md): common problems and fixes.
 
 ## Screenshots And Artwork
 
