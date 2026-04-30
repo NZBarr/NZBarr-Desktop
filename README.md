@@ -17,6 +17,19 @@ NZBarr does not include media, Usenet access, indexer access, or downloader soft
 - Use external players such as VLC, IINA, or MPV when configured.
 - Run a refresh/repost workflow with SABnzbd and ngPost when those external tools are installed and configured.
 
+
+## 💛 Support NZBarr
+
+If you find **NZBarr** useful, consider supporting its development.  
+Your contribution helps cover hosting, energy costs, and ongoing improvements.
+
+<p align="center">
+  <a href="https://nzbarr.com">
+    <img src="https://nzbarr.com/nzbarr-logo-classic.svg" width="220"/>
+  </a>
+</p>
+
+
 ## Best NZB Import Workflow
 
 The recommended workflow is:
