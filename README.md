@@ -189,6 +189,10 @@ NZBarr-GIT/
 └── docs/              Extra technical documentation
 ```
 
+## Donate
+
+[![Doneer](https://img.shields.io/badge/Doneer-klik%20hier-green)](https://nzbarr.com)
+
 ## License
 
 NZBarr is free and open source software licensed under GPL-3.0-or-later. See [LICENSE](LICENSE).
