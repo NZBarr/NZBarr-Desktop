@@ -127,7 +127,7 @@ function main() {
   fs.writeFileSync(path.join(desktopTargetDir, `${packageJson.name}.desktop`), `${desktopFile}\n`);
 
   const author = packageJson.author || {};
-  const maintainer = `${author.name || 'NZBarr'} <${author.email || 'hello@nzbarr.com'}>`;
+  const maintainer = `${author.name || 'NZBarr'} <${author.email || 'info@nzbarr.com'}>`;
   const installedSizeKb = Math.ceil(getDirectorySizeBytes(dataRoot) / 1024);
   const controlFile = [
     `Package: ${packageJson.name}`,

@@ -14,7 +14,7 @@
   },
   "author": {
     "name": "NZBarr",
-    "email": "hello@nzbarr.com"
+    "email": "info@nzbarr.com"
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
@@ -95,7 +95,7 @@
     "linux": {
       "icon": "icons/icon-1024.png",
       "category": "AudioVideo",
-      "maintainer": "NZBarr <hello@nzbarr.com>",
+      "maintainer": "NZBarr <info@nzbarr.com>",
       "target": [
         {
           "target": "AppImage",
