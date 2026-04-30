@@ -189,9 +189,16 @@ NZBarr-GIT/
 └── docs/              Extra technical documentation
 ```
 
-## Donate
+## ❤️ Support NZBarr
 
-[![Donate](https://img.shields.io/badge/Donate-click%20here-green)](https://nzbarr.com)
+If you find **NZBarr** useful, consider supporting its development.  
+Your contribution helps cover hosting, energy costs, and keeps the project alive and improving.
+
+<p align="center">
+  <a href="https://nzbarr.com">
+    <img src="https://img.shields.io/badge/Support-NZBarr-blue?style=for-the-badge&logo=github" />
+  </a>
+</p>
 
 ## License
 
