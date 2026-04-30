@@ -40,7 +40,51 @@ Smart Preparation is important because raw NZB filenames are often messy. A file
 
 ## Screenshots And Artwork
 
-Some documentation screenshots may show movie and TV metadata or artwork loaded through the TMDB API. This project uses TMDB data and images, but is not endorsed, certified, or otherwise approved by TMDB.
+Some documentation screenshots may show movie and TV metadata or artwork. NZBarr does not include TMDB artwork or a TMDB API key; artwork is loaded only when a user enters their own TMDB API key. This project is not endorsed, certified, or otherwise approved by TMDB.
+
+## Screenshots
+
+### Home
+
+![NZBarr home page](renderer/assets/images/home-page.jpg)
+
+The home page gives a visual overview of the library, including highlighted titles, recent items, and quick entry points into the rest of the app.
+
+### Browse
+
+![NZBarr browse page](renderer/assets/images/browse-page.jpg)
+
+The browse page lists imported NZB releases with search, sorting, filtering, and release metadata for day-to-day library management.
+
+### Library
+
+![NZBarr library page](renderer/assets/images/Library-page.jpg)
+
+The library page groups imported releases by movie or show, so multiple NZB versions can be managed under one media entry.
+
+### Movie Details
+
+![NZBarr movie detail page](renderer/assets/images/Movie-detail-page-1.jpg)
+
+The movie detail page shows metadata, artwork, cast information, and all available NZB releases linked to that title.
+
+### Release Details
+
+![NZBarr release detail page](renderer/assets/images/release-detail-page.jpg)
+
+The release detail view shows technical release information, NFO and MediaInfo details, refresh status, and download actions.
+
+### Collections
+
+![NZBarr collections page](renderer/assets/images/collections-page.jpg)
+
+Collections group related movies together and make it easier to see which titles are already in the library and which are missing.
+
+### Settings
+
+![NZBarr settings page](renderer/assets/images/settings-page.jpg)
+
+The settings page is where users configure API keys, downloader connections, Smart Preparation folders, playback, and advanced refresh options.
 
 ## Smart Preparation
 

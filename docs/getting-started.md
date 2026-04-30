@@ -133,7 +133,7 @@ For the GitHub README, the safest options are:
 - Crop or blur real movie artwork before publishing.
 - Use Settings screenshots, because they usually show the app UI without third-party artwork.
 
-The screenshots currently used for NZBarr documentation may show movie and TV artwork loaded through the TMDB API. NZBarr uses TMDB data and images, but is not endorsed, certified, or otherwise approved by TMDB.
+The screenshots currently used for NZBarr documentation may show movie and TV artwork. NZBarr does not include TMDB artwork or a TMDB API key; artwork is loaded only when a user enters their own TMDB API key. This project is not endorsed, certified, or otherwise approved by TMDB.
 
 ## More Help
 
