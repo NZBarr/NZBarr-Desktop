@@ -1,0 +1,27 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="44" y1="36" x2="212" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1A2028"/>
+      <stop offset="1" stop-color="#0C1016"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="78" y1="62" x2="182" y2="194" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF1C7"/>
+      <stop offset="0.42" stop-color="#D6AF5B"/>
+      <stop offset="1" stop-color="#8B6624"/>
+    </linearGradient>
+    <linearGradient id="goldSoft" x1="92" y1="76" x2="170" y2="182" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE7AA"/>
+      <stop offset="1" stop-color="#BE8F37"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="256" height="256" rx="54" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="256" height="256" rx="54" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="2"/>
+
+  <path d="M72 188V68H96L160 146V68H184V188H161L96 109V188H72Z" fill="url(#goldGrad)"/>
+  <path d="M86 54H170" stroke="url(#goldSoft)" stroke-width="8" stroke-linecap="round" opacity="0.95"/>
+  <path d="M98 202H158" stroke="url(#goldSoft)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+
+  <rect x="156" y="146" width="36" height="24" rx="12" fill="#11161D" stroke="url(#goldSoft)" stroke-width="5"/>
+  <path d="M169 151L181 158L169 165V151Z" fill="url(#goldSoft)"/>
+</svg>
